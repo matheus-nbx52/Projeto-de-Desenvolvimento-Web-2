@@ -2,10 +2,11 @@
   "compilerOptions": {
     "target": "es2016",                                  
     "lib": ["ES6"],                                        
-    "experimentalDecorators": true,                   
-    "emitDecoratorMetadata": true,                    
+    "experimentalDecorators": true,   
+    "types": ["...", "@types/jest"],                
+    "emitDecoratorMetadata": true,                  
     "module": "commonjs",                                
-    "rootDir": "./src",                                  
+    "rootDir": "./src",                                 
     "typeRoots": [
       "./node_modules/@type",
       "./src/@types"
@@ -16,6 +17,6 @@
       "removeComments": true,                           
     "esModuleInterop": true,                             
     "forceConsistentCasingInFileNames": true,           
-    "skipLibCheck": true                               
+    "skipLibCheck": true                                
   }
 }
