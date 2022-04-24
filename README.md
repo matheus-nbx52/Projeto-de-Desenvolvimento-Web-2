@@ -4,8 +4,6 @@
 ## ✨ Sobre o projeto
 
 <h4 style='text'>Site de visualização de vídeos de diversos jogos (clipes), com possibilidade do usuário já cadastrado comentar, dar like e fazer upload de vídeos, trocar foto do perfil, alterar nome de usuário, seguir outros usuários, como também poder compartilhar.</h4>
-<br>
-<br>
 
 ## 📌 Objetivos: 
 
@@ -13,9 +11,6 @@
 - [] cadastro com email
 - [] like, comentário(editar e apagar) e compartilhar 
 - [] alterar nome de usuário e foto.
-<br>
-<br>
-
 
 ## 🚀 Como Iniciar o projeto? 
 <br>
@@ -25,4 +20,4 @@
 <br>
 
 #### Rodando o projeto 
-    - npm install 
+    - npm start
