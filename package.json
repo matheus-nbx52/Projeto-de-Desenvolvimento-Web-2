@@ -1,0 +1,22 @@
+{
+  "name": "projeto-de-desenvolvimento-web-2",
+  "version": "1.0.0",
+  "description": "<h4 style='text'>Site de visualização de vídeos de diversos jogos (clipes), com possibilidade do usuário já cadastrado comentar, dar like e fazer upload de vídeos, trocar foto do perfil, alterar nome de usuário, seguir outros usuários, como também poder compartilhar.</h4>\r <br>\r <br>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheus-nbx52/Projeto-de-Desenvolvimento-Web-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheus-nbx52/Projeto-de-Desenvolvimento-Web-2/issues"
+  },
+  "homepage": "https://github.com/matheus-nbx52/Projeto-de-Desenvolvimento-Web-2#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
