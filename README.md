@@ -7,17 +7,16 @@
 
 ## 📌 Objetivos: 
 
-- [] interface geral
-- [] cadastro com email
-- [] like, comentário(editar e apagar) e compartilhar 
-- [] alterar nome de usuário e foto.
+- [ ] interface geral
+- [ ] cadastro com email
+- [ ] like, comentário(editar e apagar) e compartilhar 
+- [ ] alterar nome de usuário e foto.
 
 ## 🚀 Como Iniciar o projeto? 
-<br>
 
 #### Instalando as dependências 
     - npm install 
-<br>
+
 
 #### Rodando o projeto 
     - npm start
