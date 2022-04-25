@@ -2,8 +2,7 @@
   "compilerOptions": {
     "target": "es2016",                                  
     "lib": ["ES6"],                                        
-    "experimentalDecorators": true,   
-    "types": ["...", "@types/jest"],                
+    "experimentalDecorators": true,                   
     "emitDecoratorMetadata": true,                  
     "module": "commonjs",                                
     "rootDir": "./src",                                 

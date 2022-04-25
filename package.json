@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
-    "start": "./dist/server.js"
+    "start": "node ./dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/matheus-nbx52/Projeto-de-Desenvolvimento-Web-2#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "http-status-codes": "^2.2.0",
+    "mongoose": "^6.3.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

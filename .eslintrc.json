@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "jest": true
+        "jest": true,
+        "commonjs": true
     },
     "extends": [
         "airbnb-base"
@@ -16,7 +17,11 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "linebreak-style": 0
+        "linebreak-style": 0,
+        "import/no-unresolved":0,
+        "import/extensions":0
+
+
         
     }
 }
