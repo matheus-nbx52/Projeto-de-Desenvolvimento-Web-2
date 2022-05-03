@@ -10,5 +10,3 @@ dotenv.config(); // Permite o uso do dotenvs
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Cadastro de usuarios,
