@@ -8,9 +8,9 @@ userRoutes.get('/user', userController.AllUsers);
 // Vai adicionar novos usuarios
 userRoutes.post('/new', userController.newUser);
 
-userRoutes.post('/new', userController.newUser);
+userRoutes.put('/update/:userId', userController.updateUser);
 
-userRoutes.post('/new', userController.newUser);
+userRoutes.delete('/remove/:userId', userController.removeUser);
 
 export = userRoutes;
 
