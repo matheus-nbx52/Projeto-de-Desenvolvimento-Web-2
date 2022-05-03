@@ -30,4 +30,6 @@ Antes de iniciar o projeto deve ser feita algumas configurações
 #### Rodando o projeto 
     - npm start
 
+## estrutura do projeto 
 
+<img src='./img/detals.png'>
