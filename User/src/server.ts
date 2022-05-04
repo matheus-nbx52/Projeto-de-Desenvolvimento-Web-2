@@ -16,7 +16,7 @@ mongoose.connect(process.env.CONNECT_STRING).then(() => {
 });
 
 // Faz o form eo Json funcionar
-
+app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -8,6 +8,7 @@ type User = {
   sobrenome: string,
   userName: string,
   email: string,
+  image:string,
   password: string
 }
 
@@ -23,6 +24,7 @@ class UserController {
       sobrenome: user.sobrenome,
       email: user.email,
       userName: user.userName,
+      image: req.file.filename,
       password: await bcrypt.hash(user.password, 10),
     };
 
@@ -41,7 +43,6 @@ class UserController {
   }
 
   async updateUser(req, res) {
-    console.log(req.params.userId);
     if (!req.params.userId) return res.status(StatusCodes.BAD_REQUEST).send('Insira o id do usuario');
     try {
       let user = req.body;
@@ -53,23 +54,23 @@ class UserController {
         sobrenome: user.sobrenome,
         email: user.email,
         userName: user.userName,
+        image: req.file.filename,
         password: await bcrypt.hash(user.password, 10),
       };
       await UserModel.findByIdAndUpdate(req.params.userId, user);
       return res.status(StatusCodes.ACCEPTED).send('Atualizado com sucesso');
     } catch (error) {
+      console.log(error);
       return res.status(StatusCodes.ACCEPTED).send('Erro ao Ao atualizar usuario');
     }
   }
 
   async removeUser(req, res) {
-    console.log(req.params.userId);
     if (!req.params.userId) return res.status(StatusCodes.BAD_REQUEST).send('Insira o id do usuario');
     try {
       await UserModel.findByIdAndDelete(req.params.userId);
       return res.status(StatusCodes.ACCEPTED).send('Removido com sucesso');
     } catch (error) {
-      console.log(error);
       return res.status(StatusCodes.ACCEPTED).send('Erro ao remover usuário');
     }
   }
