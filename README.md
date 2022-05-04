@@ -30,6 +30,11 @@ Antes de iniciar o projeto deve ser feita algumas configurações
 #### Rodando o projeto 
     - npm start
 
-## estrutura do projeto 
+## Estrutura do projeto 
 
-<img src='./img/detals.png'>
+<img src='./ReadmeImages/detals.png'>
+
+## Estrutura do banco de dados sql 
+
+<img src='./ReadmeImages/detals.png'>
+
