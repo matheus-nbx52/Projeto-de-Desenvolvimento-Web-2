@@ -36,5 +36,5 @@ Antes de iniciar o projeto deve ser feita algumas configurações
 
 ## Estrutura do banco de dados sql 
 
-<img src='./ReadmeImages/detals.png'>
+<img src='./ReadmeImages/databaseSql.png'>
 
