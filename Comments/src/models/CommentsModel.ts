@@ -18,6 +18,10 @@ export const CommentsModel = db.define('comments',{
             model:'Videos',
             key:'id'
         }
+    },
+    comentario:{
+        type:DataType.TEXT,
+        allowNull:false
     }
 
 })

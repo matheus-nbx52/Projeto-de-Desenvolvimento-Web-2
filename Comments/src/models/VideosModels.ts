@@ -31,11 +31,8 @@ export const VideosModel = db.define('Videos',{
     userID:{
         type:DataType.STRING,
         allowNull:false
-    },
-    Comentario:{
-        type:DataType.TEXT,
-        allowNull:false
     }
+    
     // o sequelize cria sozinho um updatedAt
 
 })
