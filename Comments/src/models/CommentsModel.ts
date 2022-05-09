@@ -22,3 +22,4 @@ export const CommentsModel = db.define('comments',{
 
 })
 
+//Adicionar um comentario 

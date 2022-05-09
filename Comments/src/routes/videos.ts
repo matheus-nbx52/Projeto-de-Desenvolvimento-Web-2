@@ -7,12 +7,12 @@ import VideoController from '../controllers/VideoController'
 
 videosRouter.post('/videos',videoController.newVideo)
 
-videosRouter.get('/videos',videoController.findAll)
+videosRouter.get('/videos',videoController.findAllVideos)
 
-videosRouter.get('/videos/:videoId',VideoController.findOne)
+videosRouter.get('/videos/:videoId',VideoController.findOneVideo)
 
-videosRouter.put('/videos/:videoId',VideoController.update)
+videosRouter.put('/videos/:videoId',VideoController.updateVideo)
 
-videosRouter.delete('/videos/:videoId',videoController.delete)
+videosRouter.delete('/videos/:videoId',videoController.deleteVideo)
 
 export default videosRouter;

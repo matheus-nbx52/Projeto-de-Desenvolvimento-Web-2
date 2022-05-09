@@ -5,6 +5,8 @@ import videosRouter from './routes/videos';
 import { db } from './database/db';
 import { VideosModel } from './models/VideosModels' 
 import { CommentsModel } from './models/CommentsModel'
+import CommentRouter from './routes/comments'
+
 
 
 
@@ -19,12 +21,17 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(videosRouter)
+
+
 
 // rotas
 app.get('/', (req, res) => {
   res.status(StatusCodes.OK).send('hello');
 });
+
+app.use(videosRouter)
+app.use(CommentRouter)
+
 
 app.listen(8081, async ()=>{
   await VideosModel.sync()
