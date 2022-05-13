@@ -28,11 +28,8 @@ app.get('/', (req, res) => {
 });
 
 // o server so vai funcionar se o mongoose tiver uma conexão bem sucedida
-
 app.on('connectionOk', () => {
-  app.listen(3000, () => {
-    console.log('server executando na porta 3000');
-  });
+  app.listen(3030, '0.0.0.0');
 });
 
 // Cadastro de usuarios,

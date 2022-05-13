@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "<h4 style='text'>Site de visualização de vídeos de diversos jogos (clipes), com possibilidade do usuário já cadastrado comentar, dar like e fazer upload de vídeos, trocar foto do perfil, alterar nome de usuário, seguir outros usuários, como também poder compartilhar.</h4>\r <br>\r <br>",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "jest",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
