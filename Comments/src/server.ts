@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // rotas
 app.get('/', (req, res) => {
-  res.status(StatusCodes.OK).send('hello');
+  res.status(StatusCodes.OK).send('Ok');
 });
 
 app.use(videosRouter)
