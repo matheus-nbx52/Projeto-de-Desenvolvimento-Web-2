@@ -1,19 +1,17 @@
-import Item from "./components/item";
-import Card from "./components/card";
+import React from 'react'
+import Topo from './componentes/Topo'
+import Corpo from './componentes/Corpo'
+import Dados from './componentes/Dados'
+import './App.css'
 
+export default function App(){
 
-
-const App = ()=> {
-  return (
-    <>
-    <div>Hello world</div>
-    <Item texto="item1" />
-    <Item>children</Item>
-    <Item texto="item2"/>
-    <Card/> 
-    </>
-  );
+ 
+  return(
+  <>
+    <Topo/>
+    <Corpo/>
+    <Dados/>
+  </>
+  )
 }
-
-export default App;
-

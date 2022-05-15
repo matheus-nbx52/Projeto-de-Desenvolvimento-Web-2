@@ -1,0 +1,72 @@
+*{
+    margin:0;
+    padding:0;
+
+}
+
+header {
+    background-color:rgb(40, 35, 63);
+}
+
+.container{
+    max-width: 1140px;
+    margin: 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding:20px 0;
+}
+
+.title-logo{
+    display:flex;
+    gap: 5px;
+}
+
+.title-logo a{
+    text-decoration: none;
+    font-size: 1.25em;
+    color:red;
+
+}
+
+
+.menu-urls ul li a{
+    color:red
+
+}
+
+.menu-urls ul{
+    list-style: none;
+    display: flex;
+    gap:30px;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:2px;
+    height: 30px;
+}
+
+input{
+    background-color:black;
+    color:white;  
+    border:none;
+    outline:none; 
+    padding: 8px 10px;
+
+}
+
+input::placeholder{
+    color: white;
+}
+
+button {
+    font-size: 11px;
+    color: white;
+    background-color: #313131;
+    border: none;
+    width: 50px;
+    height:101%;
+}

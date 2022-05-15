@@ -1,0 +1,79 @@
+body{
+  background-color: #313131;
+}
+
+button.slick-prev{
+
+  font-size: 0px;
+  border: none;    
+  width: 75px;
+  height: 75px;
+  z-index: 9;
+  background-color: transparent;
+  position: absolute;
+  background-image: url('../src/componentes/imgs/istockphoto-1155706702-612x612.jpg');
+  top: 35%;
+  left: 5%;
+  }
+
+  button.slick-next{
+
+      font-size: 0px;
+      border: none;    
+      width: 75px;
+      height: 75px;
+      z-index: 9;
+      background-color: transparent;
+      position: absolute;
+      background-image: url('');
+      top: 35%;
+      right: 5%;
+      }
+
+      button.slick-next{
+
+          font-size: 0px;
+          border: none;    
+          width: 75px;
+          height: 75px;
+          z-index: 9;
+          background-color: transparent;
+          position: absolute;
+          background-image: url('');
+          top: 35%;
+          right: 5%;
+          }
+
+          .slick-list {
+              width: 100%!important;
+              }
+              .slick-initialized {
+                  overflow: hidden;
+              }
+              
+              .slick-dots li button{
+              font-size: 0px;
+              border: 5px solid orange;
+              width: 26px;
+              height: 26px;
+              background: transparent;
+              border-radius: 50%;
+              cursor: pointer;
+              }
+              
+              .slick-dots{
+              margin: 0 auto;
+              width: 50%;
+              position: absolute;
+              left: 50%;
+              top: 285px;
+              }
+              
+              li.slick-active button{
+              background: purple;
+              }
+              
+              .slick-dots li{
+              display: inline-block;
+              padding-left:10px ;
+              }
