@@ -11,7 +11,6 @@ button.slick-prev{
   z-index: 9;
   background-color: transparent;
   position: absolute;
-  background-image: url('../src/componentes/imgs/istockphoto-1155706702-612x612.jpg');
   top: 35%;
   left: 5%;
   }
@@ -25,7 +24,6 @@ button.slick-prev{
       z-index: 9;
       background-color: transparent;
       position: absolute;
-      background-image: url('');
       top: 35%;
       right: 5%;
       }
@@ -39,7 +37,6 @@ button.slick-prev{
           z-index: 9;
           background-color: transparent;
           position: absolute;
-          background-image: url('');
           top: 35%;
           right: 5%;
           }

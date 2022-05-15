@@ -1,17 +1,16 @@
 import React from 'react'
 import Topo from './componentes/Topo'
 import Corpo from './componentes/Corpo'
-import Dados from './componentes/Dados'
 import './App.css'
+import './componentes/pages/CSS Pages/Topo.css'
+import Rotas from './routes'
 
 export default function App(){
 
  
   return(
   <>
-    <Topo/>
-    <Corpo/>
-    <Dados/>
+    <Rotas/>
   </>
   )
 }

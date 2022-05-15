@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import './Topo.css';
+import './pages/CSS Pages/Topo.css';
 import { GiAtomicSlashes } from "react-icons/gi";
 import { CgHomeAlt, CgProfile, CgBookmark, CgSearch } from "react-icons/cg";
+
 
 export default function Topo() {
     return (
@@ -18,15 +19,15 @@ export default function Topo() {
                     <div className="menu">
                         <ul>
                             <li>
-                                <a href=""><CgHomeAlt /></a>
+                                <a href="./App.js"><CgHomeAlt/></a>
                             </li>
 
                             <li>
-                                <a href=""><CgProfile /></a>
+                                <a href="/loginpage"><CgProfile/></a>
                             </li>
 
                             <li>
-                                <a href=""><CgBookmark /></a>
+                                <a href=""><CgBookmark/></a>
                             </li>
 
                             <li>
