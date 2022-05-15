@@ -1,4 +1,4 @@
-# using a python small basic image
+
 FROM node:alpine
 
 EXPOSE 3030

@@ -26,6 +26,10 @@ app.use('/user', userRoutes);
 app.get('/', (req, res) => {
   res.send('hello');
 });
+// Caso nenhuma rota Exista
+app.use((req, res) => {
+  res.status(404).json({ message: 'Erro ao acessar a rota' });
+});
 
 // o server so vai funcionar se o mongoose tiver uma conexão bem sucedida
 app.on('connectionOk', () => {
