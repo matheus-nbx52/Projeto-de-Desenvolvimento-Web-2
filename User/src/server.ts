@@ -15,20 +15,22 @@ mongoose.connect(process.env.CONNECT_STRING).then(() => {
   console.log(e); // Lembrar de por uma rota 404 aqui
 });
 
+app.use(express.static('public')); // setando a pasta onde estarão os arquivos estaticos
+// Vai permitir o uso das imagens via url :)
+
 // Faz o form eo Json funcionar
-app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Rotas
-app.use('/user', userRoutes);
+app.use('/', userRoutes);
 
-app.get('/', (req, res) => {
-  res.send('hello');
-});
-// Caso nenhuma rota Exista
+// Caso nenhuma rota Exista um rota de 404 deve vir aqui :)
 app.use((req, res) => {
-  res.status(404).json({ message: 'Erro ao acessar a rota' });
+  res.status(404).json({
+    error: true,
+    message: 'Rota não disponivel ',
+  });
 });
 
 // o server so vai funcionar se o mongoose tiver uma conexão bem sucedida

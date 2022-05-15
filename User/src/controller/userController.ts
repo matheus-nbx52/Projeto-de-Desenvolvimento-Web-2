@@ -8,7 +8,7 @@ type User = {
   sobrenome: string,
   userName: string,
   email: string,
-  image:string,
+  image: string,
   password: string
 }
 
@@ -16,7 +16,12 @@ class UserController {
   // eslint-disable-next-line consistent-return
   async newUser(req, res) {
     let user: User = req.body;
-    if (!user) return res.status(StatusCodes.BAD_REQUEST).send('there is a missing information');
+    if (!user) {
+      return res.status(StatusCodes.BAD_REQUEST).Json({
+        error: true,
+        message: "dont't have user",
+      });
+    }
 
     // Só vai mandar isso pro banco
     user = {
@@ -24,54 +29,94 @@ class UserController {
       sobrenome: user.sobrenome,
       email: user.email,
       userName: user.userName,
-      image: req.file.filename,
+      image: req.file ? req.file.filename : '',
       password: await bcrypt.hash(user.password, 10),
     };
 
     UserModel.create(user).then(() => {
-      return res.status(StatusCodes.OK).send('Sucess');
+      return res.status(StatusCodes.CREATED).json({
+        error: false,
+        message: 'Sucess',
+      });
     }).catch((e) => {
       // Erro 11000 se refere a dados duplicados
-      if (e.code === 11000) return res.status(StatusCodes.BAD_GATEWAY).send('User Já existe');
-      return res.status(StatusCodes.BAD_GATEWAY).send('Database Error');
+      if (e.code === 11000) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+          error: true,
+          message: 'user or email already exists',
+        });
+      }
+      return res.status(StatusCodes.BAD_GATEWAY).send({
+        error: true,
+        message: 'DataBaseError',
+      });
     });
   }
 
   async AllUsers(req, res) {
     const users = await UserModel.find();
-    res.status(200).json(users);
+    res.status(StatusCodes.OK).json({ users });
   }
 
   async updateUser(req, res) {
-    if (!req.params.userId) return res.status(StatusCodes.BAD_REQUEST).send('Insira o id do usuario');
+    if (!req.params.userId) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        error: true,
+        message: 'Send one id',
+      });
+    }
+
     try {
       let user = req.body;
       if (!user) {
-        return res.status(StatusCodes.ACCEPTED).send('campos vazios ou inexistentes');
+        return res.status(StatusCodes.BAD_GATEWAY).send({
+          error: true,
+          message: 'null fields',
+        });
       }
+
       user = {
         name: user.name,
         sobrenome: user.sobrenome,
         email: user.email,
         userName: user.userName,
-        image: req.file.filename,
-        password: await bcrypt.hash(user.password, 10),
+        image: req.file ? req.file.filename : undefined,
+        password: await bcrypt.hash(user.password, 10), // hash da password
       };
+
       await UserModel.findByIdAndUpdate(req.params.userId, user);
-      return res.status(StatusCodes.ACCEPTED).send('Atualizado com sucesso');
+      return res.status(StatusCodes.CREATED).send({
+        error: false,
+        message: 'sucess',
+      });
     } catch (error) {
       console.log(error);
-      return res.status(StatusCodes.ACCEPTED).send('Erro ao Ao atualizar usuario');
+      return res.status(StatusCodes.BAD_GATEWAY).send({
+
+        error: true,
+        message: 'Database Error',
+      });
     }
   }
 
   async removeUser(req, res) {
-    if (!req.params.userId) return res.status(StatusCodes.BAD_REQUEST).send('Insira o id do usuario');
+    if (!req.params.userId) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        error: true,
+        message: 'Send one id',
+      });
+    }
     try {
       await UserModel.findByIdAndDelete(req.params.userId);
-      return res.status(StatusCodes.ACCEPTED).send('Removido com sucesso');
+      return res.status(StatusCodes.ACCEPTED).json({
+        error: false,
+        message: 'Sucess',
+      });
     } catch (error) {
-      return res.status(StatusCodes.ACCEPTED).send('Erro ao remover usuário');
+      return res.status(StatusCodes.ACCEPTED).send({
+        error: true,
+        message: 'Database Error',
+      });
     }
   }
 }
