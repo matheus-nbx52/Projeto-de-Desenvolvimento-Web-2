@@ -12,7 +12,8 @@ export const CommentsModel = db.define('comments',{
     userID:{
         type:DataType.INTEGER,
         allowNull:false
-    },videos_idVideos:{
+    },
+    videos_idVideos:{
         type:DataType.INTEGER,
         references:{
             model:'Videos',
