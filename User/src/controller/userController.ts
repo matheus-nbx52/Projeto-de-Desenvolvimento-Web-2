@@ -46,7 +46,7 @@ class UserController {
           message: 'user or email already exists',
         });
       }
-      return res.status(StatusCodes.BAD_GATEWAY).send({
+      return res.status(StatusCodes.BAD_GATEWAY).json({
         error: true,
         message: 'DataBaseError',
       });
@@ -56,6 +56,21 @@ class UserController {
   async AllUsers(req, res) {
     const users = await UserModel.find();
     res.status(StatusCodes.OK).json({ users });
+  }
+
+  async getUserById(req, res) {
+    try {
+      const user = await UserModel.findOne({ _id: req.params.userId });
+      res.status(StatusCodes.OK).json({
+        error: false,
+        user,
+      });
+    } catch (error) {
+      res.status(StatusCodes.BAD_GATEWAY).json({
+        error: true,
+        message: 'DataBaseError',
+      });
+    }
   }
 
   async updateUser(req, res) {
@@ -90,9 +105,7 @@ class UserController {
         message: 'sucess',
       });
     } catch (error) {
-      console.log(error);
       return res.status(StatusCodes.BAD_GATEWAY).send({
-
         error: true,
         message: 'Database Error',
       });

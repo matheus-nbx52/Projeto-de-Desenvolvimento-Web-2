@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 // rota de usuarios
 import * as dotenv from 'dotenv';
 import userRoutes from './routes/UserRoutes';
+import loginRoutes from './routes/LoginRoutes';
 
 const app = express();
 dotenv.config(); // Permite o uso do dotenvs
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Rotas
 app.use('/', userRoutes);
+app.use('/', loginRoutes);
 
 // Caso nenhuma rota Exista um rota de 404 deve vir aqui :)
 app.use((req, res) => {
