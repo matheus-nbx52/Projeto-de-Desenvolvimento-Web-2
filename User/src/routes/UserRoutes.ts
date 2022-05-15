@@ -7,6 +7,7 @@ const userRoutes = Router();
 // Listagem de usuarios _ (Nao deve ser mandado com o projeto ja no ar)
 userRoutes.get('/user', userController.AllUsers);
 // Vai adicionar novos usuarios
+userRoutes.get('/user/:userId', userController.getUserById);
 
 userRoutes.post('/new', uploadUser.single('userImg'), userController.newUser);
 
