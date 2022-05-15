@@ -41,7 +41,7 @@ header {
     gap:30px;
 }
 
-form{
+#barra-pesquisa{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,7 +49,7 @@ form{
     height: 30px;
 }
 
-input{
+#barra-pesquisa input{
     background-color:black;
     color:white;  
     border:none;
@@ -62,7 +62,7 @@ input::placeholder{
     color: white;
 }
 
-button {
+#barra-pesquisa button {
     font-size: 11px;
     color: white;
     background-color: #313131;
