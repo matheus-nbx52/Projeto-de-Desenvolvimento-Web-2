@@ -19,7 +19,7 @@ mongoose.connect(process.env.CONNECT_STRING).then(() => {
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json())
 // Rotas
 app.use('/user', userRoutes);
 
