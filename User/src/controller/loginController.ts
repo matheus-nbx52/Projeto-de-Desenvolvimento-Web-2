@@ -58,6 +58,8 @@ class LoginController {
           error: false,
           message: 'sucess',
           token: jwt,
+          // isso nao deve estar aqui toda informação deve vir do token
+          userId: userInformations._id,
         });
       } catch (error) {
         return res.status(StatusCodes.BAD_GATEWAY).json({
