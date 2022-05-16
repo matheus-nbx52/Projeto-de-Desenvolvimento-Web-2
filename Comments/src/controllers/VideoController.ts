@@ -33,11 +33,18 @@ class VideoController {
             videos,})
         :res.status(204).send();
      }
+     //request de varios videos
     async findAllVideos(req: Request, res: Response) {
-
+        const videos = await VideosModel.findAll();
+        return videos.length > 0
+        ? res.status(200).json({
+            error: false, 
+            message: 'sucess', 
+            videos,})
+        :res.status(204).send();
      }
     async updateVideo(req: Request, res: Response) {
-
+        
      }
     async deleteVideo(req: Request, res: Response) {
 
