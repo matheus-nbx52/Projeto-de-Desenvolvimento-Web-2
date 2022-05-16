@@ -18,8 +18,20 @@ class VideoController {
       });
 
      }
+     //request de um video
     async findOneVideo(req: Request, res: Response) {
-
+        const {videoId} = req.params;
+        const videos = await VideosModel.findOne({
+            where:{
+                id: videoId,
+            },
+        });
+        return videos 
+        ? res.status(200).json({
+            error: false, 
+            message: 'sucess', 
+            videos,})
+        :res.status(204).send();
      }
     async findAllVideos(req: Request, res: Response) {
 
