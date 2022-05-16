@@ -17,6 +17,7 @@ type User = {
 class LoginController {
   async login(req:Request, res:Response) {
     const CompareUser:User = req.body;
+    console.log(req.body);
     if (!CompareUser) return res.status(StatusCodes.OK).json('ta vazio');
     try {
       const user:User|any = await UserModel.find({
@@ -53,7 +54,7 @@ class LoginController {
 
         const jwt = jsonwebtoken.sign(payload, secret, options);
 
-        res.status(StatusCodes.BAD_GATEWAY).json({
+        res.status(StatusCodes.OK).json({
           error: false,
           message: 'sucess',
           token: jwt,

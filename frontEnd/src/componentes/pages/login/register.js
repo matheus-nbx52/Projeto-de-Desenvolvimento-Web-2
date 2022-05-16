@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import './register.css'
-import Img from '/Users/willi/OneDrive/Área de Trabalho/Projeto-de-Desenvolvimento-Web-2/frontEnd/src/componentes/imgs/img-01.png'
+import Img from '../../imgs/img-01.png'
+
 
 export default function CadastroPage() {
     return (
@@ -14,7 +15,7 @@ export default function CadastroPage() {
                             <img src={Img} alt="IMG"/>
                         </div>
 
-                        <form className="login100-form validate-form">
+                        <form method='post' action='http://localhost:3030/new' className="login100-form validate-form " enctype="multipart/form-data">
                             <span className="login100-form-title">
                                 cadastre-se
                             </span>
