@@ -1,0 +1,14 @@
+
+FROM node:alpine
+
+EXPOSE 3000
+
+WORKDIR /frotEnd
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+CMD [ "npm", "start" ]

@@ -17,10 +17,11 @@ class UserController {
   async newUser(req, res) {
     let user: User = req.body;
     if (!user) {
-      return res.status(StatusCodes.BAD_REQUEST).Json({
-        error: true,
-        message: "dont't have user",
-      });
+      // return res.status(StatusCodes.BAD_REQUEST).Json({
+      //   error: true,
+      //   message: "dont't have user",
+      // });
+      return res.redirect('http://localhost:3000/cadastropage');
     }
 
     // Só vai mandar isso pro banco
@@ -34,22 +35,27 @@ class UserController {
     };
 
     UserModel.create(user).then(() => {
-      return res.status(StatusCodes.CREATED).json({
-        error: false,
-        message: 'Sucess',
-      });
+      // return res.status(StatusCodes.CREATED).json({
+      //   error: false,
+      //   message: 'Sucess',
+      // });
+      return res.redirect('http://localhost:3000/cadastropage');
     }).catch((e) => {
       // Erro 11000 se refere a dados duplicados
       if (e.code === 11000) {
-        return res.status(StatusCodes.BAD_REQUEST).json({
-          error: true,
-          message: 'user or email already exists',
-        });
+        // return res.status(StatusCodes.BAD_REQUEST).json({
+        //   error: true,
+        //   message: 'user or email already exists',
+        // });
+        return res.redirect('http://localhost:3000/cadastropage');
       }
-      return res.status(StatusCodes.BAD_GATEWAY).json({
-        error: true,
-        message: 'DataBaseError',
-      });
+
+      // return res.status(StatusCodes.BAD_GATEWAY).json({
+      // error: true,
+      // message: 'DataBaseError',
+      // });
+
+      return res.redirect('http://localhost:3000/cadastropage');
     });
   }
 
