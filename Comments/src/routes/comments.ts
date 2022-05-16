@@ -11,6 +11,6 @@ CommentRouter.get('/Comment/:videoid',CommentsController.findOneComment)
 
 CommentRouter.put('/Comment/:commentId',CommentsController.updateComment)
 
-CommentRouter.delete('/Comment/:videoId',CommentsController.deleteComment)
+CommentRouter.delete('/Comment/:commentId',CommentsController.deleteComment)
 
 export default CommentRouter;

@@ -41,8 +41,11 @@ class CommentsController {
         await CommentsModel.update(req.body, {where:{ id: commentId }});
         return res.status(204).send();
     }
+    //deleta um comentario
     async deleteComment(req: Request, res: Response) {
-
+        const { commentId } = req.params;
+        await CommentsModel.destroy({ where: { id: commentId}});
+        return res.status(204).send();
      }
 }
 
