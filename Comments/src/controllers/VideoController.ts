@@ -43,11 +43,17 @@ class VideoController {
             videos,})
         :res.status(204).send();
      }
+     //atualiza ou edita video
     async updateVideo(req: Request, res: Response) {
-        
+        const {videoId} = req.params;
+        await VideosModel.update(req.body, {where:{ id: videoId }});
+        return res.status(204).send();
      }
+     //deleta um video
     async deleteVideo(req: Request, res: Response) {
-
+        const {videoId} = req.params;
+        await VideosModel.destroy({ where: { id: videoId}});
+        return res.status(204).send();
      }
 }
 
