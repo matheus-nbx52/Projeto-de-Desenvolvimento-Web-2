@@ -7,10 +7,10 @@ CommentRouter.post('/Comment',CommentsController.newComment)
 
 CommentRouter.get('/Comment',CommentsController.findAllComment)
 
-CommentRouter.get('/Comment/:videoId',CommentsController.findOneComment)
+CommentRouter.get('/Comment/:videoid',CommentsController.findOneComment)
 
-CommentRouter.put('/Comment/:videoId',CommentsController.updateComment)
+CommentRouter.put('/Comment/:commentId',CommentsController.updateComment)
 
-CommentRouter.delete('/Comment/:videoId',CommentsController.deleteComment)
+CommentRouter.delete('/Comment/:commentId',CommentsController.deleteComment)
 
 export default CommentRouter;
