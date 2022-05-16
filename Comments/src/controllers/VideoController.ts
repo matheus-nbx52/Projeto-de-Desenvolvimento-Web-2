@@ -3,12 +3,12 @@ import { VideosModel } from "../models/VideosModels";
 
 class VideoController {
     //posta um novo video
-    async newVideo(req: Request, res: Response) {
+    async newVideo(req, res: Response) {
         const {userID, videoTitle, videoUrl, likeNumber, subject,} = req.body;
         const videos = await VideosModel.create({
             userID,
             videoTitle,
-            videoUrl, 
+            videoUrl:req.file ? req.file.filename : undefined, 
             likeNumber, 
             subject,});
             return res.status(201).json({          
@@ -16,7 +16,7 @@ class VideoController {
                 message: 'sucess',
                 videos,
       });
-
+      
      }
      //request de um video
     async findOneVideo(req: Request, res: Response) {
