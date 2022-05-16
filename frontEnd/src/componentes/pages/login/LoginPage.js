@@ -15,9 +15,9 @@ export default function LoginPage() {
     async function Login(e){
         e.preventDefault();
         await axios.post('http://localhost:3030/login',{email:email,password:password}).then((e)=>{
-            localStorage.setItem('userToken',e.data.token)
+            localStorage.setItem('userToken', JSON.stringify({acessToken:e.data.token,userId:e.data.userId}))
             return navigate("/");
-            
+            // ir no node e fazer retornar o user id eo token
         }).catch((e)=>{
             alert('Erro ao logar')  
             console.log(e)
