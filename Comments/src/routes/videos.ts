@@ -2,10 +2,11 @@ import router from 'express'
 import videoController from '../controllers/VideoController'
 const videosRouter = router()
 import VideoController from '../controllers/VideoController'
+import videoUpdate from  '../middlewares/Multer'
 
 
 
-videosRouter.post('/videos',videoController.newVideo)
+videosRouter.post('/videos',videoUpdate.single('video'),videoController.newVideo)
 
 videosRouter.get('/videos',videoController.findAllVideos)
 
