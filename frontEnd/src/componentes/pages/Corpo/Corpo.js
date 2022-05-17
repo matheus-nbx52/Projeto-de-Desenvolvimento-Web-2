@@ -13,6 +13,13 @@ import noUser from '../../imgs/no-User.png'
 export default function Corpo() {
     const [UserImg, setUserImg] = useState('')
     const [AllVideos, setAllVideos] = useState([1, 2, 3, 4])
+    useEffect(() => {
+        axios.get('http://localhost:8081/videos').then((data) => {
+            var user = data.data.videos
+            setAllVideos(user)
+        })
+
+    }, [])
 
 
 
@@ -206,10 +213,15 @@ export default function Corpo() {
                     </div>
 
                     <div class="cards" id='DataCard'>
-                       <Card/>
+
+                        {AllVideos.map((video)=>{
+                            return <Card videoname={video.videoTitle} videoId={video.id} assunto={video.subject} urlvideo={video.videoUrl} data={video.updatedAt}/>
+                        })}
 
 
-                     
+
+
+
 
 
 

@@ -178,12 +178,15 @@ main section.videos {
     width: 16rem;
     text-align: center;
     position: relative;
+    gap: 20px;
 
 }
-.video_card .card_image img{
+.video_card .card_image video{
     width: 100%;
-    height: 11rem;
-    border-radius: 10px;}
+    height: 100%;
+    border-radius: 20px;
+    cursor: pointer;
+;}
 
 
 .video_card .card_ico{
