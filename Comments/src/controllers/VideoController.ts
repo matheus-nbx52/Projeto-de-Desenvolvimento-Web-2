@@ -11,11 +11,13 @@ class VideoController {
             videoUrl:req.file ? req.file.filename : undefined, 
             likeNumber, 
             subject,});
-            return res.status(201).json({          
-                error: false,
-                message: 'sucess',
-                videos,
-      });
+            res.redirect('http://localhost:3000/')
+    //         return res.status(201).json({          
+    //             error: false,
+    //             message: 'sucess',
+    //             videos,
+            
+    //   });
       
      }
      //request de um video

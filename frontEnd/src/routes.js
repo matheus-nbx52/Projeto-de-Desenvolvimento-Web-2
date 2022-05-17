@@ -17,7 +17,7 @@ function Rotas(){
                 <Route path="/loginpage" exact element ={<LoginPage/>}/> 
                 <Route path="/userpage" exact element ={<UserPage/>}/>
                 <Route path="/addvideo" exact element ={<AddVideo/>}/>
-                <Route path="/videoplayer" exact element={<VideoPlayer/>}/>
+                <Route path="/videoplayer/:videoid" exact element={<VideoPlayer/>}/>
             </Routes>
         </BrowserRouter>        
     )

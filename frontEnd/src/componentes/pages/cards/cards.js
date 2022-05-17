@@ -1,13 +1,17 @@
 import { useState } from "react"
 import axios from "axios"
 import Img from '../../imgs/imagem-teste.jpeg'
+import { useNavigate } from "react-router-dom"
 
 
 export default function Card({ videoname, assunto, urlvideo, data, videoId }) {
+    const navigate = useNavigate();
     function renderVideo(e){
         const videoId = e.target.id
         if(!videoId) return
         console.log(videoId)
+        navigate(`/videoplayer/${videoId}`)
+        
 
     }
 
