@@ -40,7 +40,7 @@ export default function AddVideo() {
                     <form method='post' action='http://localhost:8081/videos' enctype="multipart/form-data">
                         <div className='box-add-video'>
                             <label for='videoSend'><i class="fas fa-camera"></i></label>
-                            <input type='file' name='video' id='videoSend' />
+                            <input type='file' name='video' id='videoSend'  />
                         </div>
                         <div className='video-itens'>
                             <input type='text' name='videoTitle' placeholder='videoTitle'></input>
