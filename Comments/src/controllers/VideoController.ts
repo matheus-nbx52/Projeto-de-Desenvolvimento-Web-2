@@ -33,14 +33,27 @@ class VideoController {
             videos,})
         :res.status(204).send();
      }
+     //request de varios videos
     async findAllVideos(req: Request, res: Response) {
-
+        const videos = await VideosModel.findAll();
+        return videos.length > 0
+        ? res.status(200).json({
+            error: false, 
+            message: 'sucess', 
+            videos,})
+        :res.status(204).send();
      }
+     //atualiza ou edita video
     async updateVideo(req: Request, res: Response) {
-
+        const {videoId} = req.params;
+        await VideosModel.update(req.body, {where:{ id: videoId }});
+        return res.status(204).send();
      }
+     //deleta um video
     async deleteVideo(req: Request, res: Response) {
-
+        const {videoId} = req.params;
+        await VideosModel.destroy({ where: { id: videoId}});
+        return res.status(204).send();
      }
 }
 
