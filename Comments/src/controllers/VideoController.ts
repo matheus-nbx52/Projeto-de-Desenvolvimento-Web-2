@@ -36,12 +36,11 @@ class VideoController {
      //request de varios videos
     async findAllVideos(req: Request, res: Response) {
         const videos = await VideosModel.findAll();
-        return videos.length > 0
-        ? res.status(200).json({
+        if (!videos) return res.send('error')
+        return res.status(200).json({
             error: false, 
             message: 'sucess', 
-            videos,})
-        :res.status(204).send();
+            videos})
      }
      //atualiza ou edita video
     async updateVideo(req: Request, res: Response) {

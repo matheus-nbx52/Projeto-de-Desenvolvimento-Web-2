@@ -42,8 +42,8 @@ export default function AddVideo() {
                         <div className='video-itens'>
                             <input type='text' name='videoTitle' placeholder='videoTitle'></input>
                             <input type='text' name='subject' placeholder='subject'></input>
-                            <input type='text' name='userID' placeholder='userID' value={idUser}></input>
-                            <input type='text' name='likeNumber' placeholder='LikeNumber' value='0'></input>
+                            <input type='text' name='userID' placeholder='userID' className='inputDisable' value={idUser}></input>
+                            <input type='text' name='likeNumber' placeholder='LikeNumber' className='inputDisable' value='0'></input>
                             <input type='submit' placeholder='Enviar'></input>
 
 

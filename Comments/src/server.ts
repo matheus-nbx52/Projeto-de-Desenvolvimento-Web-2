@@ -18,9 +18,16 @@ const app = express();
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public')); // setando a pasta onde estarão os arquivos estaticos
+// Vai permitir o uso das imagens via url :)
 
 
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 // rotas
 app.get('/', (req, res) => {

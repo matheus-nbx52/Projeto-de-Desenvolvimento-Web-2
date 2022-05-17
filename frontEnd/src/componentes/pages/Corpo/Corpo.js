@@ -6,28 +6,39 @@ import OwlCarousel from 'react-owl-carousel';
 import axios from 'axios';
 import '../../owen/owl.carousel.css'
 import '../../owen/owl.theme.default.min.css'
+import Card from '../cards/cards'
 
 import noUser from '../../imgs/no-User.png'
 
 export default function Corpo() {
-    const [UserImg,setUserImg] = useState('')
-    function VerificaLogado(){
+    const [UserImg, setUserImg] = useState('')
+    const [AllVideos, setAllVideos] = useState([1, 2, 3, 4])
+
+
+
+
+    VerificaLogado()
+    function VerificaLogado() {
         const data = localStorage.getItem('userToken')
-        if(!data) return;
-        
+        if (!data) return;
+
         const userId = JSON.parse(data).userId
-        // console.log(userId)
-        if(data){
-            axios.get(`http://localhost:3030/user/${userId}`).then((userApi)=>{
-            setUserImg(userApi.data.user.image)
-        }).catch((e)=>{
-            console.log('Erro')
-        })}else{
+        if (data) {
+            axios.get(`http://localhost:3030/user/${userId}`).then((userApi) => {
+                setUserImg(userApi.data.user.image)
+            }).catch((e) => {
+                console.log('Erro')
+            })
+        } else {
             setUserImg(noUser)
         }
     }
-    
-    VerificaLogado()
+
+
+
+
+    // console.log(videos)
+
 
     return (
         <>
@@ -45,7 +56,7 @@ export default function Corpo() {
 
                     </div>
                     <div class="user">
-                        <a href="/userpage"><img src={ UserImg ? `http://localhost:3030/upload/${UserImg}` : noUser} alt="" /></a>
+                        <a href="/userpage"><img src={UserImg ? `http://localhost:3030/upload/${UserImg}` : noUser} alt="" /></a>
                     </div>
 
                 </nav>
@@ -154,6 +165,7 @@ export default function Corpo() {
                                     </div>
                                 </div>
                             </div>
+
                             <div class="item">
                                 <div class="trending_card">
                                     <div class="card_image">
@@ -192,147 +204,14 @@ export default function Corpo() {
                     <div class="title">
                         <h1>Recommended for you</h1>
                     </div>
-                    <div class="cards">
-                        <div class="video_card">
-                            <div class="card_image">
-                                <img src={Img} alt="" />
-                            </div>
-                            <div class="card_ico">
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="description">
-                                <div class="itens">
-                                    <div class="year description_item">2021</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="type description_item"><i class="fas fa-photo-video ico"></i>Movie</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="restriction description_item"></div>
-                                </div>
-                                <div class="title">
-                                    <h3>Beyond Earth</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video_card">
-                            <div class="card_image">
-                                <img src={Img} alt="" />
-                            </div>
-                            <div class="card_ico">
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="description">
-                                <div class="itens">
-                                    <div class="year description_item">2021</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="type description_item"><i class="fas fa-photo-video ico"></i>Movie</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="restriction description_item"></div>
-                                </div>
-                                <div class="title">
-                                    <h3>Beyond Earth</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video_card">
-                            <div class="card_image">
-                                <img src={Img} alt="" />
-                            </div>
-                            <div class="card_ico">
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="description">
-                                <div class="itens">
-                                    <div class="year description_item">2021</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="type description_item"><i class="fas fa-photo-video ico"></i>Movie</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="restriction description_item"></div>
-                                </div>
-                                <div class="title">
-                                    <h3>Beyond Earth</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video_card">
-                            <div class="card_image">
-                                <img src={Img} alt="" />
-                            </div>
-                            <div class="card_ico">
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="description">
-                                <div class="itens">
-                                    <div class="year description_item">2021</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="type description_item"><i class="fas fa-photo-video ico"></i>Movie</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="restriction description_item"></div>
-                                </div>
-                                <div class="title">
-                                    <h3>Beyond Earth</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video_card">
-                            <div class="card_image">
-                                <img src={Img} alt="" />
-                            </div>
-                            <div class="card_ico">
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="description">
-                                <div class="itens">
-                                    <div class="year description_item">2021</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="type description_item"><i class="fas fa-photo-video ico"></i>Movie</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="restriction description_item"></div>
-                                </div>
-                                <div class="title">
-                                    <h3>Beyond Earth</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video_card">
-                            <div class="card_image">
-                                <img src={Img} alt="" />
-                            </div>
-                            <div class="card_ico">
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="description">
-                                <div class="itens">
-                                    <div class="year description_item">2021</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="type description_item"><i class="fas fa-photo-video ico"></i>Movie</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="restriction description_item"></div>
-                                </div>
-                                <div class="title">
-                                    <h3>Beyond Earth</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video_card">
-                            <div class="card_image">
-                                <img src={Img} alt="" />
-                            </div>
-                            <div class="card_ico">
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="description">
-                                <div class="itens">
-                                    <div class="year description_item">2021</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="type description_item"><i class="fas fa-photo-video ico"></i>Movie</div>
-                                    <div class="pointer"><i class="fas fa-futbol"></i></div>
-                                    <div class="restriction description_item"></div>
-                                </div>
-                                <div class="title">
-                                    <h3>Beyond Earth</h3>
-                                </div>
-                            </div>
-                        </div>
+
+                    <div class="cards" id='DataCard'>
+                       <Card/>
+
+
+                     
+
+
 
 
 
