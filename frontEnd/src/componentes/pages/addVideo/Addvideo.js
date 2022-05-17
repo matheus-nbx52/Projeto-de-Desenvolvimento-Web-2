@@ -7,9 +7,12 @@ import axios from 'axios'
 export default function AddVideo() {
     const [idUser,setIdUser] = useState('')
     const navigate = useNavigate();
+    
+
     useEffect(() => {
         VerificaLogado()
     }, [])
+    
 
     function VerificaLogado() {
         const data = localStorage.getItem('userToken')
