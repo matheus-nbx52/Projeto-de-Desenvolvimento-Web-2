@@ -8,8 +8,6 @@ import { CommentsModel } from './models/CommentsModel'
 import CommentRouter from './routes/comments'
 
 
-
-
 // rota de usuarios
 dotenv.config();
 

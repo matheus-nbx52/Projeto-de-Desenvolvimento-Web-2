@@ -1,0 +1,17 @@
+.box-add-video{
+    width: 450px;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed white;
+}
+.box-add-video input{
+    display: none;
+
+}
+.box-add-video label i{
+    font-size: 100px;
+    color: white;
+
+}

@@ -235,3 +235,6 @@ main section.videos {
     gap: 30px;
 
 }
+a i{
+    color: var(--not-select-ico-color);
+}
