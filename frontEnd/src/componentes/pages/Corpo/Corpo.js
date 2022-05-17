@@ -1,18 +1,33 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Corpo/Corpo.css'
 import Img from '../../imgs/imagem-teste.jpeg'
 import OwlCarousel from 'react-owl-carousel';
+import axios from 'axios';
 import '../../owen/owl.carousel.css'
 import '../../owen/owl.theme.default.min.css'
 
+import noUser from '../../imgs/no-User.png'
+
 export default function Corpo() {
-    // function VerificaLogado(){
-    //     const token = localStorage.getItem('userToken')
-    //     console.log(token)
-    // }
+    const [UserImg,setUserImg] = useState('')
+    function VerificaLogado(){
+        const data = localStorage.getItem('userToken')
+        if(!data) return;
+        
+        const userId = JSON.parse(data).userId
+        // console.log(userId)
+        if(data){
+            axios.get(`http://localhost:3030/user/${userId}`).then((userApi)=>{
+            setUserImg(userApi.data.user.image)
+        }).catch((e)=>{
+            console.log('Erro')
+        })}else{
+            setUserImg(noUser)
+        }
+    }
     
-    // VerificaLogado()
+    VerificaLogado()
 
     return (
         <>
@@ -30,7 +45,7 @@ export default function Corpo() {
 
                     </div>
                     <div class="user">
-                        <img src="assets/images/31552e5e2dc259477da2247a3e540603.jpg" alt="" />
+                        <a href="/userpage"><img src={ UserImg ? `http://localhost:3030/upload/${UserImg}` : noUser} alt="" /></a>
                     </div>
 
                 </nav>
