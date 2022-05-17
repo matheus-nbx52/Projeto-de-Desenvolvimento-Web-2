@@ -48,9 +48,6 @@ export default function UserPage() {
         navigate('/')
         
     }
-    function updateUser(){
-
-    }
     
     
    
@@ -62,18 +59,17 @@ export default function UserPage() {
                     <i className="fas fa-door-open" onClick={logOut}></i>
                 </nav>
             </header>
-
+            
             <main className="container">
-
-                <form onSubmit={updateUser} method="" id='userForm' enctype="multipart/form-data">
+                <form action={`http://localhost:3030/update/${idUser}`} method="post" id='userForm' enctype="multipart/form-data">
                     <label for="imageInput" >
                         <img id="user-img" src={`http://localhost:3030/upload/${UserImg}`} for="image" alt="" />
                     </label>
                     <input id="imageInput" type="file" name="userImg" />
                     <input type="text" name="name" value={UserName} onChange={(e)=>setName(e.target.value)} placeholder="Nome" />
-                    <input type="text" name="sobrenome" value={UserSobrenome} placeholder="Sobrenome" />
-                    <input type="text" name="email" value={UserEmail} placeholder="email" />
-                    <input type="text" name="userName" value={UserUserName} placeholder="username" />
+                    <input type="text" name="sobrenome" value={UserSobrenome} onChange={(e)=>setSobrenome(e.target.value)} placeholder="Sobrenome" />
+                    <input type="text" name="email" value={UserEmail} onChange={(e)=>setEmail(e.target.value)} placeholder="email" />
+                    <input type="text" name="userName" value={UserUserName} onChange={(e)=>setUserName(e.target.value)} placeholder="username" />
                     <input type="password" name="New password"  placeholder="password" autoComplete='true'/>
                     <input type="submit" value='Salvar' />
                 </form>

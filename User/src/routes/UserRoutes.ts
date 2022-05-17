@@ -11,7 +11,7 @@ userRoutes.get('/user/:userId', userController.getUserById);
 
 userRoutes.post('/new', uploadUser.single('userImg'), userController.newUser);
 
-userRoutes.put('/update/:userId', uploadUser.single('userImg'), userController.updateUser);
+userRoutes.post('/update/:userId', uploadUser.single('userImg'), userController.updateUser); // metodo deve ser put
 
 userRoutes.delete('/remove/:userId', userController.removeUser);
 

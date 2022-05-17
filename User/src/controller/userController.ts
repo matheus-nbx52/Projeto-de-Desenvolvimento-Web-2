@@ -102,19 +102,22 @@ class UserController {
         email: user.email,
         userName: user.userName,
         image: req.file ? req.file.filename : undefined,
-        password: await bcrypt.hash(user.password, 10), // hash da password
+        password: user.password ? await bcrypt.hash(user.password, 10) : '', // hash da password
       };
 
       await UserModel.findByIdAndUpdate(req.params.userId, user);
-      return res.status(StatusCodes.CREATED).send({
-        error: false,
-        message: 'sucess',
-      });
+      // return res.status(StatusCodes.CREATED).send({
+      //   error: false,
+      //   message: 'sucess',
+      // });
+      res.redirect('http://localhost:3000/userpage');
     } catch (error) {
-      return res.status(StatusCodes.BAD_GATEWAY).send({
-        error: true,
-        message: 'Database Error',
-      });
+      console.log(error);
+      res.redirect('http://localhost:3000/userpage');
+      // return res.status(StatusCodes.BAD_GATEWAY).send({
+      //   error: true,
+      //   message: 'Database Error',
+      // });
     }
   }
 
