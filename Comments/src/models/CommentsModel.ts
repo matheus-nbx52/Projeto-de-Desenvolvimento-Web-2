@@ -10,7 +10,7 @@ export const CommentsModel = db.define('comments',{
         primaryKey:true
     },
     userID:{
-        type:DataType.INTEGER,
+        type:DataType.TEXT,
         allowNull:false
     },
     videos_idVideos:{
