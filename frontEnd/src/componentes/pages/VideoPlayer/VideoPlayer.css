@@ -6,5 +6,20 @@
     padding-top: 80px;
 }
 
+.postar-Comentarios{
+    display: flex;
+    background-color: #fff;
+    max-width: 1080px;
 
+}
 
+.postar-Comentarios TextField{
+    max-width: 1080px;
+    width: 1000px;
+    
+
+}
+
+.adicionar-comentarios{
+    width: 100%;
+}
