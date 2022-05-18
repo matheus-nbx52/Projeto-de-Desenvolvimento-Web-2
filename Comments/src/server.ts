@@ -29,11 +29,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// rotas
-app.get('/', (req, res) => {
-  res.status(StatusCodes.OK).send('Ok');
-});
-
 app.use(videosRouter)
 app.use(CommentRouter)
 

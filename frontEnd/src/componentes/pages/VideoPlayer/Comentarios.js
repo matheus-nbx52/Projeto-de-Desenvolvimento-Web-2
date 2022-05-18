@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,8 +24,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
 function Comentarios({ comentario, ItemId }) {
   const classes = useStyles()
+  const [comentarioId,setComentarioId] = useState('')
+  
+  function DeleteItem(item){
+    setComentarioId(item)
+    axios.post(`http://localhost:8081/Comment/${item}`).then((e)=>{
+      console.log('Ta peganu')
+
+    }).catch((err)=>{
+      console.log(err)
+
+    })
+  }
+ 
 
   return (
     <List className={classes.root}>
@@ -50,7 +64,7 @@ function Comentarios({ comentario, ItemId }) {
           }
         />
       </ListItem>
-      <MdDeleteForever  />
+      <MdDeleteForever onClick={()=>{DeleteItem(ItemId)}} />
       <Divider variant="inset" component="li" />
 
     </List>
