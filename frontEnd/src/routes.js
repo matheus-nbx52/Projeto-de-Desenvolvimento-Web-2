@@ -1,12 +1,12 @@
 import React from "react";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
-import LoginPage from "./componentes/pages/login/LoginPage.js";
-import Register from "./componentes/pages/login/register.js"
-import Home from './componentes/pages/Corpo/Corpo'
-import UserPage from './componentes/pages/UserPage/UserPage.js'
-import AddVideo from "./componentes/pages/addVideo/Addvideo.js";
-import VideoPlayer from './componentes/pages/VideoPlayer/VideoPlayer';
+import LoginPage from "./pages/login/LoginPage.js";
+import Register from "./pages/RegisterPage/register.js"
+import Home from './pages/Corpo/Corpo'
+import UserPage from './pages/UserPage/UserPage.js'
+import AddVideo from "./pages/addVideo/Addvideo.js";
+// import VideoPlayer from './static/pages/VideoPlayer/VideoPlayer';
 
 function Rotas(){
     return(
@@ -17,7 +17,7 @@ function Rotas(){
                 <Route path="/loginpage" exact element ={<LoginPage/>}/> 
                 <Route path="/userpage" exact element ={<UserPage/>}/>
                 <Route path="/addvideo" exact element ={<AddVideo/>}/>
-                <Route path="/videoplayer/:videoid" exact element={<VideoPlayer/>}/>
+                {/* <Route path="/videoplayer/:videoid" exact element={<VideoPlayer/>}/> */}
             </Routes>
         </BrowserRouter>        
     )

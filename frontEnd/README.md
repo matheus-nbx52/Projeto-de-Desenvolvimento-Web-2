@@ -1,5 +1,14 @@
 # Getting Started with Create React App
 
+-- lodash è uma biblioteca que permite setar um valor padrao caso nao haja usuarios.
+
+import {get} from 'lodash';
+
+get(item do array,'oque eu quero buscar','retorno se nao achar nada')
+
+
+Usar o validator pra validar campo de E-mail
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
