@@ -7,6 +7,7 @@ import axios from 'axios';
 import '../../static/owen/owl.carousel.css'
 import '../../static/owen/owl.theme.default.min.css'
 import Card from '../cards/cards'
+import { toast } from 'react-toastify';
 
 import noUser from '../../static/imgs/no-User.png'
 
@@ -19,6 +20,7 @@ export default function Corpo() {
             var user = data.data.videos
             setAllVideos(user)
         })
+        toast.success('eita gota serena')
 
     }, [])
 
