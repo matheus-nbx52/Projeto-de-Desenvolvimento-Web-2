@@ -6,6 +6,7 @@ import Register from "./pages/RegisterPage/register.js"
 import Home from './pages/Corpo/Corpo'
 import UserPage from './pages/UserPage/UserPage.js'
 import AddVideo from "./pages/addVideo/Addvideo.js";
+import Page404 from "./pages/Page404"
 // import VideoPlayer from './static/pages/VideoPlayer/VideoPlayer';
 
 function Rotas(){
@@ -17,6 +18,7 @@ function Rotas(){
                 <Route path="/loginpage" exact element ={<LoginPage/>}/> 
                 <Route path="/userpage" exact element ={<UserPage/>}/>
                 <Route path="/addvideo" exact element ={<AddVideo/>}/>
+                <Route path="*"  element ={<Page404/>}/>
                 {/* <Route path="/videoplayer/:videoid" exact element={<VideoPlayer/>}/> */}
             </Routes>
         </BrowserRouter>        
