@@ -15,48 +15,46 @@ export default function UserPage() {
     const [idUser,setIdUser] = useState('')
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        VerificaLogado()
-    },[])
+    // useEffect(()=>{
+    //     VerificaLogado()
+    // },[])
     
-    function VerificaLogado() {
-        const data = localStorage.getItem('userToken')
-        if (!data) return navigate('/loginpage')
-        const userId = JSON.parse(data).userId
-        if(!userId) return navigate('/loginpage')
-        setIdUser(userId)
-        // console.log(userId)
-        if (data) {
-            axios.get(`http://localhost:3030/user/${userId}`).then((userApi) => {
-                setUserImg(userApi.data.user.image)
-                setEmail(userApi.data.user.email)
-                setName(userApi.data.user.name)
-                setPassword(userApi.data.user.password)
-                setSobrenome(userApi.data.user.sobrenome)
-                setUserName(userApi.data.user.userName)
-            }).catch((e) => {
-                navigate('/loginpage')
-                console.log(e)
-            })
-        } else {
-            setUserImg('')
-        }
-    }
+    // function VerificaLogado() {
+    //     const data = localStorage.getItem('userToken')
+    //     if (!data) return navigate('/loginpage')
+    //     const userId = JSON.parse(data).userId
+    //     if(!userId) return navigate('/loginpage')
+    //     setIdUser(userId)
+    //     // console.log(userId)
+    //     if (data) {
+    //         axios.get(`http://localhost:3030/user/${userId}`).then((userApi) => {
+    //             setUserImg(userApi.data.user.image)
+    //             setEmail(userApi.data.user.email)
+    //             setName(userApi.data.user.name)
+    //             setPassword(userApi.data.user.password)
+    //             setSobrenome(userApi.data.user.sobrenome)
+    //             setUserName(userApi.data.user.userName)
+    //         }).catch((e) => {
+    //             navigate('/loginpage')
+    //             console.log(e)
+    //         })
+    //     } else {
+    //         setUserImg('')
+    //     }
+    // }
     
-    function logOut(){
-        localStorage.setItem('userToken',false)
-        navigate('/')
+    // function logOut(){
+    //     localStorage.setItem('userToken',false)
+    //     navigate('/')
         
-    }
-    
-    
-   
+    // }
     return (
         <>
             <header id="topo">
                 <nav className="container" id='Userbar'>
                     <a href="/"><i className="fas fa-arrow-alt-circle-left"></i></a>
-                    <i className="fas fa-door-open" onClick={logOut}></i>
+                    {/* aqui me baixo fica a função de logout  */}
+                    <i className="fas fa-door-open"></i>
                 </nav>
             </header>
             

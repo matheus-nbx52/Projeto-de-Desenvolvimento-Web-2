@@ -41,10 +41,6 @@ export const NotFound = styled.div`
         letter-spacing: 3px;
         color: white;
     }
-    
-
-    
-
 `;
 
 export const LinkStyle = styled(Link)`
