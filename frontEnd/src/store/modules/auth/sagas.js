@@ -4,8 +4,9 @@ import {
 import { toast } from 'react-toastify';
 import * as actions from './actions';
 import * as types from '../types';
-import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
+
+import axiosCommentConfig from '../../../services/axiosCommentConfig';
+
 // teste
 
 // eslint-disable-next-line no-unused-vars
@@ -14,27 +15,33 @@ import {useNavigate} from 'react-router-dom'
 // eslint-disable-next-line no-unused-vars
 function* loginRequest({payload}) {
   try {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const navigate = useNavigate()
-    const response = yield call(axios.post,'http://localhost:3030/login',payload)
-    yield put(actions.loginSucces({...response.data}))
+    const response =  yield call(axiosCommentConfig.post,'/login',payload)
+    yield put(actions.loginSuccess({...response.data}))
+    axiosCommentConfig.defaults.headers.Authorization = `Bearer ${response.data.token}`
+    console.log('Saga',{response})
     toast.success('Voce fez login');
-    axios.defaults.headers.Authorization = `Bearer ${response.data.token}`
-    navigate('/home')
-    console.log('epaaa')
+
     
     
   } catch (e) {
+    console.log(e)
     toast.error('Usuario ou senha invalidos')
-    yield put(actions.loginFail)
-    
+    yield put(actions.loginFail()) 
+  } 
+}
+function persistRehydrate({payload}){
+  const token = payload.auth.token
+  if(!token){
+    return
   }
-  
-  
+  axiosCommentConfig.defaults.headers.Authorization = `Bearer ${token}`
+
 }
 
-const allItens = all(
-  [takeLatest(types.LOGIN_REQUEST, loginRequest)],
+const allItens = all([
+    takeLatest(types.LOGIN_REQUEST, loginRequest)
+  , takeLatest(types.PERSIST_REHYDRATE,persistRehydrate)
+]
 );
 
 export default allItens;

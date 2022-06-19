@@ -7,20 +7,22 @@ import axios from 'axios';
 import '../../static/owen/owl.carousel.css'
 import '../../static/owen/owl.theme.default.min.css'
 import Card from '../cards/cards'
-import { toast } from 'react-toastify';
+import Loading from '../../componentes/Loading';
 
 import noUser from '../../static/imgs/no-User.png'
 
 export default function Corpo() {
     const [UserImg, setUserImg] = useState('')
     const [AllVideos, setAllVideos] = useState([1, 2, 3, 4])
+    const [isLoading,setLoading] = useState(true)
 
     useEffect(() => {
         axios.get('http://localhost:8081/videos').then((data) => {
             var user = data.data.videos
             setAllVideos(user)
+            setLoading(false)
         })
-        toast.success('eita gota serena')
+
 
     }, [])
 
@@ -52,6 +54,7 @@ export default function Corpo() {
 
     return (
         <>
+        <Loading isLoading={isLoading}/>
             <header class="container">
                 <nav class="options">
                     <div class="logo">

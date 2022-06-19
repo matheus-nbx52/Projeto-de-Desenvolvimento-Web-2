@@ -9,10 +9,11 @@ import AddVideo from "./pages/addVideo/Addvideo.js";
 import Page404 from "./pages/Page404"
 import { Navigate } from "react-router-dom";
 // import VideoPlayer from './static/pages/VideoPlayer/VideoPlayer';
+import {useSelector} from 'react-redux'
 
 // autorização 
 function PrivateRoute({ children, redirectTo }) {
-    const isAuthenticate = false;
+    const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
 
     return isAuthenticate ? children : <Navigate to={redirectTo} />;
 }

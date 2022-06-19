@@ -7,13 +7,14 @@ export function loginRequest(payload) {
 
   });
 }
-export function loginSucces(payload) {
+export function loginSuccess(payload) {
   return ({
     type: types.LOGIN_SUCCESS,
     payload,
 
   });
 }
+
 export function loginFail(payload) {
   return ({
     type: types.LOGIN_FAIL,

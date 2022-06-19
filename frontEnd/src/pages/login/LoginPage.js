@@ -2,12 +2,12 @@
 import React, { useState } from 'react';
 import '../login/loginPage.css'
 import Img from '../../static/imgs/img-01.png'
-import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { isEmail } from 'validator'
 import { toast } from 'react-toastify';
 import * as actions from '../../store/modules/auth/actions'
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
+
 
 
 
@@ -34,20 +34,8 @@ export default function LoginPage() {
         }
 
         if (!formErros) {
-            // await axios.post('http://localhost:3030/login', { email: email, password: password }).then((e) => {
-            //     localStorage.setItem('userToken', JSON.stringify({ acessToken: e.data.token, userId: e.data.userId }))
-            //     if(!e.data.token){
-            //         toast.error('E-mail ou senha incorretos')
-            //     }
-            //     return navigate("/");
-            //     // ir no node e fazer retornar o user id eo token
-            // }).catch((e) => {
-            //     toast.error('Erro de conexão com o banco de dados')
-            //     setEmail('')
-            //     setPassword('')
-            //     console.log(e)
-            // })
             dispatch(actions.loginRequest({email,password}))
+            navigate('/')
 
         }else{
             return;
