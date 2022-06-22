@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../login/loginPage.css'
 import Img from '../../static/imgs/img-01.png'
 import { useNavigate } from "react-router-dom";
@@ -7,22 +7,31 @@ import { isEmail } from 'validator'
 import { toast } from 'react-toastify';
 import * as actions from '../../store/modules/auth/actions'
 import { useDispatch,useSelector } from 'react-redux';
+import Loading from '../../componentes/Loading';
 
 
 
 
-export default function LoginPage() {
+
+export default function LoginPage(props) {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
-    const navigate = useNavigate();
+    const isLoading = useSelector(state => state.auth.isLoading)
+    const isAuth = useSelector(state=>state.auth.isAuthenticate)
+    
+    useEffect(()=>{
+        if(isAuth) {
+            navigate('/')
+        }
+    },[isAuth])
 
+    
 
     async function Login(e) {
         e.preventDefault();
         let formErros = false;
-
-
 
         if (!isEmail(email)) {
             formErros = true;
@@ -35,19 +44,18 @@ export default function LoginPage() {
 
         if (!formErros) {
             dispatch(actions.loginRequest({email,password}))
-            navigate('/')
+           
+           
 
         }else{
             return;
         }
-
-
-
+        
     }
-
 
     return (
         <>
+        <Loading isLoading={isLoading}/>
 
             <div className="limiter">
                 <div className="container-login100">

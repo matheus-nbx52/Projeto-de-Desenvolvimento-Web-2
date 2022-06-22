@@ -18,6 +18,12 @@ function PrivateRoute({ children, redirectTo }) {
     return isAuthenticate ? children : <Navigate to={redirectTo} />;
 }
 
+function PrivateLogin({ children, redirectTo }) {
+    const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
+
+    return !isAuthenticate ? children : <Navigate to={redirectTo} />;
+}
+
 // modelo rota privada
 
 {/* <PrivateRoute redirectTo="/login">
@@ -33,7 +39,8 @@ function Rotas() {
             <Routes>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/cadastropage" exact element={<Register />} />
-                <Route path="/loginpage" exact element={<LoginPage />} />
+
+                <Route path="/loginpage" exact element={<PrivateLogin redirectTo={'/'}><LoginPage /></PrivateLogin>} />
 
                 {/* <Route path="/userpage" exact element={<UserPage />} /> */}
 

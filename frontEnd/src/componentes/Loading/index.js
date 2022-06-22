@@ -5,11 +5,11 @@ export default function Loading({isLoading}){
     if(!isLoading) return (<></>)
     
     return(
-        <h1>
+        
             <Container>
-                    <span>Carregando...</span> 
+                    <span></span> 
             </Container>
-        </h1>
+        
     )
 
 }

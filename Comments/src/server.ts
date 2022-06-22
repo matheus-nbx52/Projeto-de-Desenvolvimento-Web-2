@@ -17,7 +17,7 @@ const app = express();
 
 
 app.use(express.json());
-app.use(delay(2000))
+app.use(delay(1000))
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public')); // setando a pasta onde estarão os arquivos estaticos

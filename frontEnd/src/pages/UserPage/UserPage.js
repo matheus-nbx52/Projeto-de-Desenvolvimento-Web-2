@@ -3,7 +3,8 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-
+import * as actions from '../../store/modules/auth/actions.js'
+import { useDispatch } from 'react-redux';
 
 export default function UserPage() {
     const [UserImg, setUserImg] = useState('')
@@ -14,6 +15,12 @@ export default function UserPage() {
     const [UserUserName, setUserName] = useState('')
     const [idUser,setIdUser] = useState('')
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const handleLogout = ()=>{
+        dispatch(actions.loginFail())
+        navigate('/')
+        
+    }
 
     // useEffect(()=>{
     //     VerificaLogado()
@@ -54,7 +61,7 @@ export default function UserPage() {
                 <nav className="container" id='Userbar'>
                     <a href="/"><i className="fas fa-arrow-alt-circle-left"></i></a>
                     {/* aqui me baixo fica a função de logout  */}
-                    <i className="fas fa-door-open"></i>
+                    <i className="fas fa-door-open" onClick={handleLogout}></i>
                 </nav>
             </header>
             

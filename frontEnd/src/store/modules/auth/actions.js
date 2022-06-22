@@ -1,4 +1,5 @@
 import * as types from '../types';
+
 // o action e responsavel por disparar as ações/eventos
 export function loginRequest(payload) {
   return ({
