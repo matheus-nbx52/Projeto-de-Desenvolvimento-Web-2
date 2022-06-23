@@ -19,8 +19,6 @@ function* loginRequest({payload}) {
     yield put(actions.loginSuccess({...response.data}))
     axiosCommentConfig.defaults.headers.Authorization = `Bearer ${response.data.token}`
     console.log('Saga',{response})
-
-    
     
   } catch (e) {
     console.log(e)

@@ -4,7 +4,7 @@ import * as types from '../types';
 const initialState = {
   isAuthenticate:false,
   token:'',
-  user:{},
+  userId:{},
   isLoading:false
 
   
@@ -31,7 +31,7 @@ export default function (state = initialState, action) {
       const newState = {...state}
       newState.isAuthenticate = true
       newState.token = action.payload.token
-      newState.user = action.payload.user
+      newState.userId = action.payload.userId
       newState.isLoading = false
       return newState
     }

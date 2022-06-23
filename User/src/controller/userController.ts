@@ -17,11 +17,10 @@ class UserController {
   async newUser(req, res) {
     let user: User = req.body;
     if (!user) {
-      // return res.status(StatusCodes.BAD_REQUEST).Json({
-      //   error: true,
-      //   message: "dont't have user",
-      // });
-      return res.redirect('http://localhost:3000/cadastropage');
+      return res.status(StatusCodes.BAD_REQUEST).Json({
+        error: true,
+        message: "dont't have user",
+      });
     }
 
     // Só vai mandar isso pro banco
@@ -35,27 +34,23 @@ class UserController {
     };
 
     UserModel.create(user).then(() => {
-      // return res.status(StatusCodes.CREATED).json({
-      //   error: false,
-      //   message: 'Sucess',
-      // });
-      return res.redirect('http://localhost:3000/cadastropage');
+      return res.status(StatusCodes.CREATED).json({
+        error: false,
+        message: 'Sucess',
+      });
     }).catch((e) => {
       // Erro 11000 se refere a dados duplicados
       if (e.code === 11000) {
-        // return res.status(StatusCodes.BAD_REQUEST).json({
-        //   error: true,
-        //   message: 'user or email already exists',
-        // });
-        return res.redirect('http://localhost:3000/cadastropage');
+        return res.status(StatusCodes.BAD_REQUEST).json({
+          error: true,
+          message: 'user or email already exists',
+        });
       }
 
-      // return res.status(StatusCodes.BAD_GATEWAY).json({
-      // error: true,
-      // message: 'DataBaseError',
-      // });
-
-      return res.redirect('http://localhost:3000/cadastropage');
+      return res.status(StatusCodes.BAD_GATEWAY).json({
+        error: true,
+        message: 'DataBaseError',
+      });
     });
   }
 
@@ -106,18 +101,16 @@ class UserController {
       };
 
       await UserModel.findByIdAndUpdate(req.params.userId, user);
-      // return res.status(StatusCodes.CREATED).send({
-      //   error: false,
-      //   message: 'sucess',
-      // });
-      res.redirect('http://localhost:3000/userpage');
+      return res.status(StatusCodes.CREATED).send({
+        error: false,
+        message: 'sucess',
+      });
     } catch (error) {
       console.log(error);
-      res.redirect('http://localhost:3000/userpage');
-      // return res.status(StatusCodes.BAD_GATEWAY).send({
-      //   error: true,
-      //   message: 'Database Error',
-      // });
+      return res.status(StatusCodes.BAD_GATEWAY).send({
+        error: true,
+        message: 'Database Error',
+      });
     }
   }
 

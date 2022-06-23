@@ -38,3 +38,8 @@
 .inputDisable{
     display: none;
 }
+
+label video{
+    width: 450px;
+    height: 450px;
+}
