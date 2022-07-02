@@ -14,11 +14,14 @@ display: flex;
 align-items: center;
 justify-content: center;
 transform: scale(2);
+background-color:#10141F;
+
+
 
 span{
     width: 50px;
     height: 50px;
-    border:4px solid gray;
+    border:4px solid white;
     border-top-color: black;
     border-radius: 50%;
     animation: rotate 2s infinite;

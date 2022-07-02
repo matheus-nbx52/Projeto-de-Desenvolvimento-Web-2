@@ -10,6 +10,8 @@ videosRouter.post('/videos',videoUpdate.single('video'),videoController.newVideo
 
 videosRouter.get('/videos',videoController.findAllVideos)
 
+videosRouter.get('/videos/search',videoController.findVideoByName)
+
 videosRouter.get('/videos/:videoId',VideoController.findOneVideo)
 
 videosRouter.put('/videos/:videoId',VideoController.updateVideo)

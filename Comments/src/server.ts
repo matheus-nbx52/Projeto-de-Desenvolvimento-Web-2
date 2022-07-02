@@ -8,7 +8,6 @@ import { CommentsModel } from './models/CommentsModel'
 import CommentRouter from './routes/comments'
 import delay from 'express-delay';
 
-
 // rota de usuarios
 dotenv.config();
 

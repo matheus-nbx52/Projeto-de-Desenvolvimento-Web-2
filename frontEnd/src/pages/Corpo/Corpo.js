@@ -13,39 +13,36 @@ import noUser from '../../static/imgs/no-User.png'
 
 export default function Corpo() {
     const [UserImg, setUserImg] = useState('')
-    const [AllVideos, setAllVideos] = useState([1, 2, 3, 4])
+    const [AllVideos, setAllVideos] = useState([])
     const [isLoading,setLoading] = useState(true)
+    const [busca,setBusca] = useState([1,2,3])
+
 
     useEffect(() => {
-        axios.get('http://localhost:8081/videos').then((data) => {
-            var user = data.data.videos
+        GetAllVideos()
+       
+    }, [])
+
+    async function GetAllVideos(){
+      await axios.get('http://localhost:8081/videos').then((data) => {
+            let user = data.data.videos
             setAllVideos(user)
             setLoading(false)
         })
-
-
-    }, [])
-
-
-
-
-    VerificaLogado()
-    function VerificaLogado() {
-        const data = localStorage.getItem('userToken')
-        if (!data) return;
-
-        const userId = JSON.parse(data).userId
-        if (data) {
-            axios.get(`http://localhost:3030/user/${userId}`).then((userApi) => {
-                setUserImg(userApi.data.user.image)
-            }).catch((e) => {
-                console.log('Erro')
-            })
-        } else {
-            setUserImg(noUser)
-        }
+        
     }
 
+    function handleChange(e){
+        axios.get(`http://localhost:8081/videos/search?search_query=${e.target.value}`).then((data) => {
+            let user = data.data.videosFiltrados
+            setAllVideos(user)
+        })
+        
+    }
+
+
+
+    
 
 
 
@@ -76,7 +73,7 @@ export default function Corpo() {
 
                 <div class="seacher_bar container">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search for movies of TV series" />
+                    <input type="text" onChange={(e)=> handleChange(e)}  placeholder="Search for movies of TV series" />
 
                 </div>
 
