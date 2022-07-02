@@ -22,11 +22,13 @@ export default function UserPage() {
     const [UserPhoto, setUserPhoto] = useState('')
     const navigate = useNavigate();
     const dispatch = useDispatch()
+
     const handleLogout = () => {
         dispatch(actions.loginFail())
         navigate('/')
 
     }
+    
     async function UserDetails() {
         setIsloading(true)
         await axios.get(`http://localhost:3030/user/${userId}`).then((userApi) => {

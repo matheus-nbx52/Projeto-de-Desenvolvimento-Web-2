@@ -32,6 +32,7 @@ class UserController {
       image: req.file ? req.file.filename : '',
       password: await bcrypt.hash(user.password, 10),
     };
+    console.log(user.userName);
 
     UserModel.create(user).then(() => {
       return res.status(StatusCodes.CREATED).json({
@@ -46,6 +47,7 @@ class UserController {
           message: 'user or email already exists',
         });
       }
+      
 
       return res.status(StatusCodes.BAD_GATEWAY).json({
         error: true,

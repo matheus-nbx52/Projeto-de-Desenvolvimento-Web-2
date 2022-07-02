@@ -8,7 +8,7 @@ import '../../static/owen/owl.carousel.css'
 import '../../static/owen/owl.theme.default.min.css'
 import Card from '../cards/cards'
 import Loading from '../../componentes/Loading';
-
+import { useSelector } from 'react-redux';
 import noUser from '../../static/imgs/no-User.png'
 
 export default function Corpo() {
@@ -16,12 +16,24 @@ export default function Corpo() {
     const [AllVideos, setAllVideos] = useState([])
     const [isLoading,setLoading] = useState(true)
     const [busca,setBusca] = useState([1,2,3])
+    const [userImageapi,setUserImgApi] = useState('')
+    const userId = useSelector(state => state.auth.userId)
+    
 
 
     useEffect(() => {
         GetAllVideos()
+        GetUserPhoto()
        
     }, [])
+    function GetUserPhoto(){
+        axios.get(`http://localhost:3030/user/${userId}`).then((userApi) => 
+        setUserImgApi(`http://localhost:3030/upload/${userApi.data.user.image}`)
+
+        
+        ).catch((e)=> console.log(e))
+
+    }
 
     async function GetAllVideos(){
       await axios.get('http://localhost:8081/videos').then((data) => {
@@ -66,7 +78,7 @@ export default function Corpo() {
 
                     </div>
                     <div class="user">
-                        <a href="/userpage"><img src={UserImg ? `http://localhost:3030/upload/${UserImg}` : noUser} alt="" /></a>
+                        <a href="/userpage"><img src={userImageapi ? userImageapi : noUser} alt="" /></a>
                     </div>
 
                 </nav>
