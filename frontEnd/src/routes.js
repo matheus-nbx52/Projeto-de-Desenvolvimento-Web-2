@@ -10,6 +10,7 @@ import Page404 from "./pages/Page404"
 import { Navigate } from "react-router-dom";
 // import VideoPlayer from './static/pages/VideoPlayer/VideoPlayer';
 import {useSelector} from 'react-redux'
+import VideoPage from "./pages/VideoPage/index.js";
 
 // autorização 
 function PrivateRoute({ children, redirectTo }) {
@@ -39,6 +40,7 @@ function Rotas() {
             <Routes>
                 <Route path="/" exact element={<Home />} />
                 <Route path="/cadastropage" exact element={<Register />} />
+                <Route path="/videoplayer/:videoid" exact element={<VideoPage />} />
 
                 <Route path="/loginpage" exact element={<PrivateLogin redirectTo={'/'}><LoginPage /></PrivateLogin>} />
 

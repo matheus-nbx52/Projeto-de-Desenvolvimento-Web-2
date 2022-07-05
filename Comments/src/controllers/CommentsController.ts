@@ -18,12 +18,13 @@ class CommentsController {
   });
     }
     async findOneComment(req: Request, res: Response) {
-        // const {id}
-        // const comments = await CommentsModel.findOne({
-        //     where:{
-
-        //     }
-        // })
+        const {videoid} = req.params
+        const comments = await CommentsModel.findAll({
+            where:{
+                videos_idVideos:videoid
+            }
+        })
+        return res.json(comments)
     }
     //consultar todos os comentarios
     async findAllComment(req: Request, res: Response) {
