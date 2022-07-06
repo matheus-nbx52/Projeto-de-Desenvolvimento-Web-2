@@ -1,4 +1,15 @@
-
+*::-webkit-scrollbar {
+    width: 10px;               /* width of the entire scrollbar */
+  }
+  
+*::-webkit-scrollbar-track {
+    background: #10141F;        /* color of the tracking area */
+  }
+  
+*::-webkit-scrollbar-thumb {
+    background-color: rgb(235, 231, 231);
+    border-radius: 20px;    /* color of the scroll thumb */  /* creates padding around scroll thumb */
+  }
 .container1 header{
     width: 1000px;
     
@@ -31,8 +42,17 @@ a .logo i{
     width: 1000px;
 
 }
+/* scroll bar */
+
+
 .container1 main .videos{
-    width: 30%;
+    width: 25%;
+    height: 550px;
+    overflow: hidden;
+    overflow-y: auto;
+    background-color: #161D2F;
+    border-radius: 20px;
+    padding: 20px;
     /* background-color: pink; */
 }
 .videoDescription{

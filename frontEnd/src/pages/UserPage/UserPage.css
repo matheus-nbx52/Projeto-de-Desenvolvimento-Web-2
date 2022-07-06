@@ -11,13 +11,33 @@ body{
 }
 #imageInput{
     display: none;
+    
 }
+.userDetails{
+    width: 100%;
+    justify-self: start;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    
+}
+.inputGroup{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
 #user-img{
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    border: 15px solid #E7485D;
-    outline: 15px solid #e7485d65;
+    margin:40px 10px;
+    cursor: pointer;
+    
+}
+.noInput{
+    visibility: hidden;
 }
 header#topo{
     height: 50px;
@@ -35,12 +55,22 @@ header#topo nav{
     color: white;
     
 }
-main.container form{
-    
+main{
+    width: 100%;
+    margin: 0 auto;
+    padding:10px 40px;
+}
+main form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    width: 100%;
+    background-color: #161D2F;
+    padding: 40px 0 ;
+    margin-top: 20px;
+    border-radius: 20px;
+    
+   
 
 }
 #useForm{
@@ -56,4 +86,9 @@ main.container form{
     color: white;
     font-size: 25px;
     color: white;
+}
+
+.logoutIco{
+    color: white;
+    font-size:22px
 }
