@@ -47,7 +47,6 @@ class UserController {
           message: 'user or email already exists',
         });
       }
-      
 
       return res.status(StatusCodes.BAD_GATEWAY).json({
         error: true,
@@ -93,13 +92,17 @@ class UserController {
         });
       }
 
+      const dataUser = await UserModel.findById(req.params.userId);
+      console.log('passrod', dataUser.password);
+
+      // olhar senha do usuario ou se cadastrar 
       user = {
         name: user.name,
         sobrenome: user.sobrenome,
         email: user.email,
         userName: user.userName,
         image: req.file ? req.file.filename : undefined,
-        password: user.password ? await bcrypt.hash(user.password, 10) : '', // hash da password
+        password: user.password ? await bcrypt.hash(user.password, 10) : '',
       };
 
       await UserModel.findByIdAndUpdate(req.params.userId, user);

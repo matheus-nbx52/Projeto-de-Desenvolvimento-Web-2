@@ -36,7 +36,6 @@ export default function UserPage() {
         setUserImg(`http://localhost:3030/upload/${userApi.data.user.image}`);
         setEmail(userApi.data.user.email);
         setName(userApi.data.user.name);
-        setPassword(userApi.data.user.password);
         setSobrenome(userApi.data.user.sobrenome);
         setUserName(userApi.data.user.userName);
         setIsloading(false);
@@ -91,6 +90,7 @@ export default function UserPage() {
       formData.append("name", UserName);
       formData.append("sobrenome", UserSobrenome);
       formData.append("email", UserEmail);
+      console.log(UserPassword)
       formData.append("password", UserPassword);
       formData.append("userImg", UserPhoto);
       try {
@@ -210,6 +210,8 @@ export default function UserPage() {
             name="New password"
             placeholder="password"
             autoComplete="true"
+            value={UserPassword}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <input
           className="noInput"

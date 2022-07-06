@@ -17,16 +17,20 @@ export default function VideoPage() {
   const [newComment, setNewComment] = useState();
   const userLoggedId = useSelector((state) => state.auth.userId);
   const [videoComments, setVideoComments] = useState([]);
+  const [MainVideoAuth,setMainVideoAuth] = useState('')
 
   useEffect(() => {
     getVideos();
     getMainVideo();
     getComments();
+    getUsersById(mainVideo.userID)
   }, [videoid]);
 
   async function getMainVideo() {
     axios.get(`http://localhost:8081/videos/${videoid}`).then((response) => {
       setMainVideo(response.data.videos);
+      console.log(mainVideo)
+
     });
   }
   async function getVideos() {
@@ -49,7 +53,24 @@ export default function VideoPage() {
     });
   }
 
+  function getUsersById(userID){
+    console.log(userID)
+    axios.get(`http://localhost:3030/user/${userID}`).then((response)=>{
+      setMainVideoAuth(response.data.user)
+      console.log(response.data)
+
+      
+    
+    })
+  }
+
+
   function handleClickNewComment() {
+    setVideoComments([...videoComments,{
+      userID: userLoggedId,
+      videos_idVideos: videoid,
+      comentario: newComment,
+    }])
     axios
       .post(`http://localhost:8081/Comment`, {
         userID: userLoggedId,
@@ -57,19 +78,13 @@ export default function VideoPage() {
         comentario: newComment,
       })
       .then((response) => {
-        console.log(response);
         setNewComment("");
-        setVideoComments([...videoComments,{
-          userID: userLoggedId,
-          videos_idVideos: videoid,
-          comentario: newComment,
-        }])
+        
       })
       .catch((e) => {
         console.log(e);
       });
   }
-
   return (
     <>
       <Loading isLoading={isLoading}></Loading>
@@ -115,11 +130,11 @@ export default function VideoPage() {
             </div>
 
             <div className="userDatails">
-              <img src={`http://localhost:3030/upload/}`}></img>
+              <img src={`http://localhost:3030/upload/${MainVideoAuth.image}`}></img>
               <div className="userInformations">
-                <span className="userName">{mainVideo.userID}</span>
-                <p className="userName1">Meu amigo</p>
-              </div>
+                <span className="userName">{MainVideoAuth.name}</span>
+                <p className="userName1">{}</p>
+              </div>  
             </div>
 
             <div className="Comments">
@@ -170,6 +185,7 @@ export default function VideoPage() {
               </div>
             </div>
           </div>
+          
           <div className="videos">
             {videos.map((video) => {
               return (

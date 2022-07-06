@@ -27,6 +27,7 @@ a .logo i{
     /* background-color: red; */
     margin-top: 40px;
     display: flex;
+    gap: 30px;
 }
 .container1 main .videoContainer{
    width: 70%;
@@ -35,18 +36,18 @@ a .logo i{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right:40px;
+    
 
 }
 .container1 main .videoContainer video{
-    width: 1000px;
+    width: 900px;
 
 }
 /* scroll bar */
 
 
 .container1 main .videos{
-    width: 25%;
+    width: 100%;
     height: 550px;
     overflow: hidden;
     overflow-y: auto;
