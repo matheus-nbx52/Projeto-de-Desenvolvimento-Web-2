@@ -7,6 +7,7 @@ import { VideosModel } from './models/VideosModels'
 import { CommentsModel } from './models/CommentsModel'
 import CommentRouter from './routes/comments'
 import delay from 'express-delay';
+import cors from 'cors'
 
 // rota de usuarios
 dotenv.config();
@@ -14,9 +15,8 @@ dotenv.config();
 const app = express();
 // Faz o form eo Json funcionar
 
-
 app.use(express.json());
-app.use(delay(1000))
+
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -27,12 +27,13 @@ app.use(express.static('public')); // setando a pasta onde estarão os arquivos 
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
-app.use(videosRouter)
 app.use(CommentRouter)
+app.use(delay(1000))
+app.use(videosRouter)
 
 
 app.listen(8081, async ()=>{

@@ -19,7 +19,6 @@ export default function CadastroPage() {
     const [isLoading,setIsloading] = useState(false)
     const navigate = useNavigate()
 
-
     function handleChange(e) {
         const foto = e.target.files[0]
         setUserImg(foto)
@@ -97,7 +96,7 @@ export default function CadastroPage() {
                             <img src={Img} alt="IMG"/>
                         </div>
 
-                        <form onSubmit={(e)=>{handleSubmit(e)}} method='post'   className="login100-form validate-form ">
+                        <form onSubmit={(e)=>{handleSubmit(e)}} method='post'    className="login100-form validate-form ">
                             <span className="login100-form-title">
                                 cadastre-se
                             </span>

@@ -95,7 +95,7 @@ class UserController {
       const dataUser = await UserModel.findById(req.params.userId);
       console.log('passrod', dataUser.password);
 
-      // olhar senha do usuario ou se cadastrar 
+      // olhar senha do usuario ou se cadastrar
       user = {
         name: user.name,
         sobrenome: user.sobrenome,

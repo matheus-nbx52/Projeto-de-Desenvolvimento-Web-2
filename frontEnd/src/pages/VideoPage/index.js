@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../../componentes/Loading";
 import { useSelector } from "react-redux";
+import NoUser from "../../static/imgs/no-User.png";
+import { BiTrashAlt } from "react-icons/bi";
+import { toast } from "react-toastify";
 
 export default function VideoPage() {
   const [videos, setVideos] = useState([]);
@@ -17,20 +20,19 @@ export default function VideoPage() {
   const [newComment, setNewComment] = useState();
   const userLoggedId = useSelector((state) => state.auth.userId);
   const [videoComments, setVideoComments] = useState([]);
-  const [MainVideoAuth,setMainVideoAuth] = useState('')
+  const [MainVideoAuth, setMainVideoAuth] = useState("");
 
   useEffect(() => {
     getVideos();
     getMainVideo();
     getComments();
-    getUsersById(mainVideo.userID)
+    getUsersById(mainVideo.userID);
   }, [videoid]);
 
   async function getMainVideo() {
     axios.get(`http://localhost:8081/videos/${videoid}`).then((response) => {
       setMainVideo(response.data.videos);
-      console.log(mainVideo)
-
+      console.log(mainVideo);
     });
   }
   async function getVideos() {
@@ -48,29 +50,35 @@ export default function VideoPage() {
   function getComments() {
     axios.get(`http://localhost:8081/comment/${videoid}`).then((response) => {
       setVideoComments(response.data);
-     
-      
     });
   }
 
-  function getUsersById(userID){
-    console.log(userID)
-    axios.get(`http://localhost:3030/user/${userID}`).then((response)=>{
-      setMainVideoAuth(response.data.user)
-      console.log(response.data)
-
-      
-    
-    })
+  function getUsersById(userID) {
+    console.log(userID);
+    axios.get(`http://localhost:3030/user/${userID}`).then((response) => {
+      setMainVideoAuth(response.data.user);
+      console.log(response.data);
+    });
   }
 
+  function handleClickDeleteComment(commentId,index){
+    setIsLoading(true)
+    axios.delete(`http://localhost:8081/Comment/${commentId}`).then((response)=>{
+      toast.success('comentario deletado com sucesso')
+      setIsLoading(false)
+      getComments()
+
+
+    }).catch((err)=>{
+      setIsLoading(false)
+      toast.error('erro no servidor')
+      console.log(err)
+    })
+
+  }
 
   function handleClickNewComment() {
-    setVideoComments([...videoComments,{
-      userID: userLoggedId,
-      videos_idVideos: videoid,
-      comentario: newComment,
-    }])
+    setIsLoading(true)
     axios
       .post(`http://localhost:8081/Comment`, {
         userID: userLoggedId,
@@ -78,11 +86,19 @@ export default function VideoPage() {
         comentario: newComment,
       })
       .then((response) => {
+        setIsLoading(false)
         setNewComment("");
-        
+        setVideoComments([
+          ...videoComments,
+          response.data.comments
+          
+        ]);
+       
       })
       .catch((e) => {
+        setIsLoading(false)
         console.log(e);
+        toast.error('erro no servidor')
       });
   }
   return (
@@ -130,11 +146,17 @@ export default function VideoPage() {
             </div>
 
             <div className="userDatails">
-              <img src={`http://localhost:3030/upload/${MainVideoAuth.image}`}></img>
+              <img
+                src={
+                  MainVideoAuth.image
+                    ? `http://localhost:3030/upload/${MainVideoAuth.image}`
+                    : NoUser
+                }
+              ></img>
               <div className="userInformations">
-                <span className="userName">{MainVideoAuth.name}</span>
+                <span className="userName">{MainVideoAuth.name || "none"}</span>
                 <p className="userName1">{}</p>
-              </div>  
+              </div>
             </div>
 
             <div className="Comments">
@@ -158,9 +180,9 @@ export default function VideoPage() {
               </div>
 
               <div className="videoComments">
-                  {videoComments.map((comments)=>{
-                    return (
-                      <div className="comment">
+                {videoComments.map((comments,index) => {
+                  return (
+                    <div className="comment" key={index}>
                       <img src="https://th.bing.com/th/id/OIP.x0hrw_HVzo2WNHDRjbN_OQHaHk?pid=ImgDet&rs=1"></img>
 
                       <div className="commentVideo">
@@ -169,6 +191,9 @@ export default function VideoPage() {
                         </div>
                         <div className="commentVideoUserComment">
                           {comments.comentario}
+                          <span className="threeDotsIco">
+                            <BiTrashAlt className="menuButton"  onClick={()=>{handleClickDeleteComment(comments.id,index)}} />    
+                          </span>
                         </div>
                         <div className="commentVideoIcons">
                           <AiOutlineLike />
@@ -178,14 +203,12 @@ export default function VideoPage() {
                         </div>
                       </div>
                     </div>
-
-                    )
-                  })}
-                
+                  );
+                })}
               </div>
             </div>
           </div>
-          
+
           <div className="videos">
             {videos.map((video) => {
               return (
