@@ -27,12 +27,12 @@ export default function VideoPage() {
     getMainVideo();
     getComments();
     getUsersById(mainVideo.userID);
+    getAllUsers();
   }, [videoid]);
 
   async function getMainVideo() {
     axios.get(`http://localhost:8081/videos/${videoid}`).then((response) => {
       setMainVideo(response.data.videos);
-      console.log(mainVideo);
     });
   }
   async function getVideos() {
@@ -52,33 +52,44 @@ export default function VideoPage() {
       setVideoComments(response.data);
     });
   }
+  function userById(userID) {
+    try {
+      const userById = users.filter((user) => user._id == userID);
+      console.log(userById);
+      return userById;
+    } catch (e) {
+      return "";
+    }
+  }
 
   function getUsersById(userID) {
-    console.log(userID);
     axios.get(`http://localhost:3030/user/${userID}`).then((response) => {
       setMainVideoAuth(response.data.user);
-      console.log(response.data);
+    });
+  }
+  function getAllUsers() {
+    axios.get(`http://localhost:3030/user/`).then((response) => {
+      setUsers(response.data.users);
     });
   }
 
-  function handleClickDeleteComment(commentId,index){
-    setIsLoading(true)
-    axios.delete(`http://localhost:8081/Comment/${commentId}`).then((response)=>{
-      toast.success('comentario deletado com sucesso')
-      setIsLoading(false)
-      getComments()
-
-
-    }).catch((err)=>{
-      setIsLoading(false)
-      toast.error('erro no servidor')
-      console.log(err)
-    })
-
+  function handleClickDeleteComment(commentId, index) {
+    setIsLoading(true);
+    axios
+      .delete(`http://localhost:8081/Comment/${commentId}`)
+      .then((response) => {
+        toast.success("comentario deletado com sucesso");
+        setIsLoading(false);
+        getComments();
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        toast.error("erro no servidor");
+      });
   }
 
   function handleClickNewComment() {
-    setIsLoading(true)
+    setIsLoading(true);
     axios
       .post(`http://localhost:8081/Comment`, {
         userID: userLoggedId,
@@ -86,19 +97,13 @@ export default function VideoPage() {
         comentario: newComment,
       })
       .then((response) => {
-        setIsLoading(false)
+        setIsLoading(false);
         setNewComment("");
-        setVideoComments([
-          ...videoComments,
-          response.data.comments
-          
-        ]);
-       
+        setVideoComments([...videoComments, response.data.comments]);
       })
       .catch((e) => {
-        setIsLoading(false)
-        console.log(e);
-        toast.error('erro no servidor')
+        setIsLoading(false);
+        toast.error("erro no servidor");
       });
   }
   return (
@@ -147,6 +152,7 @@ export default function VideoPage() {
 
             <div className="userDatails">
               <img
+                alt="usuario"
                 src={
                   MainVideoAuth.image
                     ? `http://localhost:3030/upload/${MainVideoAuth.image}`
@@ -163,7 +169,16 @@ export default function VideoPage() {
               <div className="line" />
               <div className="CommentTitle">Comentarios</div>
               <div className="newComment">
-                <img src="https://th.bing.com/th/id/OIP.x0hrw_HVzo2WNHDRjbN_OQHaHk?pid=ImgDet&rs=1"></img>
+                <img
+                  alt="usuario"
+                  src={
+                    userById(userLoggedId)
+                      ? `http://localhost:3030/upload/${
+                          userById(userLoggedId)[0].image
+                        }`
+                      : NoUser
+                  }
+                ></img>
                 <div className="newCommentInput">
                   <input
                     name="comment"
@@ -180,19 +195,30 @@ export default function VideoPage() {
               </div>
 
               <div className="videoComments">
-                {videoComments.map((comments,index) => {
+                {videoComments.map((comments, index) => {
+                  console.log(comments.userID);
+                  const user = userById(comments.userID);
                   return (
                     <div className="comment" key={index}>
-                      <img src="https://th.bing.com/th/id/OIP.x0hrw_HVzo2WNHDRjbN_OQHaHk?pid=ImgDet&rs=1"></img>
+                      <img
+                        src={`http://localhost:3030/upload/${user[0].image}`}
+                        alt='user'
+                      ></img>
 
                       <div className="commentVideo">
                         <div className="commentVideoUserName">
-                          Cintia Santos
+                          {user[0].name}
                         </div>
                         <div className="commentVideoUserComment">
                           {comments.comentario}
                           <span className="threeDotsIco">
-                            <BiTrashAlt className="menuButton"  onClick={()=>{handleClickDeleteComment(comments.id,index)}} />    
+                            <BiTrashAlt
+                              className="menuButton"
+                              onClick={() => {
+                                handleClickDeleteComment(comments.id, index);
+                                // userById(comments.userID)
+                              }}
+                            />
                           </span>
                         </div>
                         <div className="commentVideoIcons">
@@ -211,6 +237,8 @@ export default function VideoPage() {
 
           <div className="videos">
             {videos.map((video) => {
+              console.log(video.userID);
+              const user = userById(video.userID);
               return (
                 <div
                   className="video"
@@ -225,9 +253,12 @@ export default function VideoPage() {
                     <div className="videoTitle">{video.videoTitle}</div>
                     <div className="videoUserDetais">
                       <div className="videoUserImg">
-                        <img src="https://th.bing.com/th/id/OIP.x0hrw_HVzo2WNHDRjbN_OQHaHk?pid=ImgDet&rs=1"></img>
+                        <img
+                          src={`http://localhost:3030/upload/${user[0].image}`}
+                          alt='userImage'
+                        ></img>
                       </div>
-                      <div className="videoUserName">{}</div>
+                      <div className="videoUserName">{user[0].name}</div>
                     </div>
                   </div>
                 </div>
