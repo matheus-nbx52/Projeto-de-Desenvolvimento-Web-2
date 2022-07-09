@@ -26,13 +26,13 @@ export default function VideoPage() {
     getVideos();
     getMainVideo();
     getComments();
-    getUsersById(mainVideo.userID);
     getAllUsers();
   }, [videoid]);
 
   async function getMainVideo() {
     axios.get(`http://localhost:8081/videos/${videoid}`).then((response) => {
       setMainVideo(response.data.videos);
+      getUsersById(response.data.videos.userID);
     });
   }
   async function getVideos() {
@@ -122,7 +122,7 @@ export default function VideoPage() {
             <a href="/addvideo">
               <i class="fas fa-photo-video"></i>
             </a>
-            <i class="fas fa-gamepad"></i>
+            <a href="/uservideos"><i class="fas fa-gamepad"></i></a>
             <i class="fas fa-star"></i>
           </div>
           <div></div>

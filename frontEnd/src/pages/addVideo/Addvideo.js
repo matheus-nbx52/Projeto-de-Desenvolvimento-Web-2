@@ -6,11 +6,13 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import noUser from '../../static/imgs/no-User.png'
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function AddVideo() {
     // const [idUser,setIdUser] = useState('')
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [videoUrl, setVideoUrl] = useState();
     const [isLoading, setIsloading] = useState(false)
     const [videoTitle, setVideoTitle] = useState('')
@@ -77,11 +79,7 @@ export default function AddVideo() {
                 setIsloading(false)
                 toast.success('Video adicionado com sucesso')
                 console.log(response)
-                setVideo('')
-                setDescription('')
-                setSubject('')
-                setVideoTitle('')
-                navigator('/')
+                navigate('/')
 
             } catch (err) {
                 console.log(err)
@@ -111,7 +109,7 @@ export default function AddVideo() {
             
               <i class="fas fa-photo-video in_used"></i>
             
-            <i class="fas fa-gamepad"></i>
+            <a href="/uservideos"><i class="fas fa-gamepad"></i></a>
             <i class="fas fa-star"></i>
           </div>
           <div class="user">

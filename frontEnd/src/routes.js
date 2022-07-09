@@ -11,6 +11,7 @@ import { Navigate } from "react-router-dom";
 // import VideoPlayer from './static/pages/VideoPlayer/VideoPlayer';
 import {useSelector} from 'react-redux'
 import VideoPage from "./pages/VideoPage/index.js";
+import UserVideos from './pages/UserVideos/UserVideos.js'
 
 // autorização 
 function PrivateRoute({ children, redirectTo }) {
@@ -49,6 +50,7 @@ function Rotas() {
                 <Route path="/addvideo" exact element={<PrivateRoute redirectTo="/loginpage"><AddVideo/></PrivateRoute>} />
 
                 <Route path="/userpage" element={<PrivateRoute redirectTo="/loginpage"><UserPage /></PrivateRoute>}></Route>
+                <Route path="/uservideos" element={<PrivateRoute redirectTo="/loginpage"><UserVideos /></PrivateRoute>}></Route>
 
 
 

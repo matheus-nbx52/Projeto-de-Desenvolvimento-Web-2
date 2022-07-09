@@ -73,7 +73,7 @@ export default function Corpo() {
                     <div class="icons">
                         <i class="fas fa-th-large in_used"></i>
                         <a href="/addvideo"><i class="fas fa-photo-video"></i></a>
-                        <i class="fas fa-gamepad"></i>
+                        <a href="/uservideos"><i class="fas fa-gamepad"></i></a>
                         <i class="fas fa-star"></i>
 
                     </div>

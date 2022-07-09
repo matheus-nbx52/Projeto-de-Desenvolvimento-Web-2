@@ -4,7 +4,7 @@ import Img from '../../static/imgs/imagem-teste.jpeg'
 import { useNavigate } from "react-router-dom"
 
 
-export default function Card({ videoname, assunto, urlvideo, data, videoId }) {
+export default function Card({ videoname, assunto, urlvideo, data, videoId,ico }) {
     const navigate = useNavigate();
     function renderVideo(e){
         const videoId = e.target.id
@@ -22,7 +22,8 @@ export default function Card({ videoname, assunto, urlvideo, data, videoId }) {
             </div>
 
             <div class="card_ico">
-                <i class="far fa-star"></i>
+                {!ico ? <i class="far fa-star"></i> : ico }
+                
             </div>
             <div class="description">
                 <div class="itens" >
