@@ -142,11 +142,7 @@ export default function VideoPage() {
             <div className="videoDescription">
               <h2>{mainVideo.videoTitle}</h2>
               <p>
-                Tiktok mashup 2022 | Tiktok viral hits ~ Best tiktok songs
-                Tiktok mashup 2022 | Tiktok viral hits ~ Best tiktok songs You
-                have such good music taste: https://bit.ly/mooncatplaylist Click
-                to follow this Spotify playlist:
-                https://sptlnk.com/GetLostInSongs https://sptlnk.com/WorkCoffee
+                {mainVideo.description ? mainVideo.description  :''}
               </p>
             </div>
 

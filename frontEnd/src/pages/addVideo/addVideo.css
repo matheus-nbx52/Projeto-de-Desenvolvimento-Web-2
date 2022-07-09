@@ -16,24 +16,30 @@
 
 }
 #box-video{
-    background-color: rebeccapurple;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 #box-video form{
     display: flex;
-    gap: 20px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 60px;
+    width: 100%;
+    
 }
-.video-itens input{
+.video-itens input,.video-itens textarea{
     padding: 15px 20px;
     border-radius: 20px;
+    width: 100%;
+    resize: none;
 }
 .video-itens{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 50%;
 }
 .inputDisable{
     display: none;

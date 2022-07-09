@@ -1,4 +1,4 @@
-import { DataType } from 'sequelize-typescript'
+import { AllowNull, DataType } from 'sequelize-typescript'
 import {db} from '../database/db'
 
 import{CommentsModel} from './CommentsModel'
@@ -21,7 +21,6 @@ export const VideosModel = db.define('Videos',{
     },
     likeNumber:{
         type:DataType.INTEGER,
-
         allowNull:true
     },
     subject:{
@@ -31,7 +30,11 @@ export const VideosModel = db.define('Videos',{
     userID:{
         type:DataType.STRING,
         allowNull:false
-    }
+    },
+    description:{
+        type:DataType.TEXT
+        
+    },
     
     // o sequelize cria sozinho um updatedAt
 

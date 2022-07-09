@@ -4,6 +4,8 @@ import axios from 'axios'
 import Loading from '../../componentes/Loading';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import noUser from '../../static/imgs/no-User.png'
 
 
 export default function AddVideo() {
@@ -16,7 +18,22 @@ export default function AddVideo() {
     const [likeNumber, setLikeNumber] = useState(0)
     const [video, setVideo] = useState('')
     const [subject, setSubject] = useState('')
+    const [userImageapi,setUserImgApi] = useState('')
+    const [description,setDescription] = useState('')
 
+    useEffect(() => {
+        GetUserPhoto()
+       
+    }, [])
+
+    function GetUserPhoto(){
+        axios.get(`http://localhost:3030/user/${userId}`).then((userApi) => 
+        setUserImgApi(`http://localhost:3030/upload/${userApi.data.user.image}`)
+
+        
+        ).catch((e)=> console.log(e))
+
+    }
 
 
 
@@ -48,6 +65,7 @@ export default function AddVideo() {
             formData.append('userID', userId)
             formData.append('likeNumber', likeNumber)
             formData.append('video', video)
+            formData.append("description",description)
             try {
                 setIsloading(true)
                 const response = await axios.post(`http://localhost:8081/videos`, formData, {
@@ -59,6 +77,11 @@ export default function AddVideo() {
                 setIsloading(false)
                 toast.success('Video adicionado com sucesso')
                 console.log(response)
+                setVideo('')
+                setDescription('')
+                setSubject('')
+                setVideoTitle('')
+                navigator('/')
 
             } catch (err) {
                 console.log(err)
@@ -75,6 +98,27 @@ export default function AddVideo() {
     }
     return (
         <>
+        <header>
+        <nav class="options">
+          <a href="/">
+            <div class="logo">
+              <i class="fab fa-simplybuilt"></i>
+            </div>
+          </a>
+
+          <div class="icons">
+            <a href="/"><i class="fas fa-th-large "></i></a>
+            
+              <i class="fas fa-photo-video in_used"></i>
+            
+            <i class="fas fa-gamepad"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="user">
+                        <a href="/userpage"><img src={userImageapi ? userImageapi : noUser} alt="" /></a>
+                    </div>
+        </nav>
+      </header>
             <main>
                 <Loading isLoading={isLoading}></Loading>
                 <section id='box-video' >
@@ -89,13 +133,11 @@ export default function AddVideo() {
                         <div className='video-itens'>
                             <input type='text' name='videoTitle' placeholder='videoTitle' onChange={(e) => setVideoTitle(e.target.value)} value={videoTitle} />
                             <input type='text' name='subject' placeholder='subject' onChange={(e) => setSubject(e.target.value)} value={subject} />
+                            <textarea  placeholder='Descrição do video' name='description' onChange={(e) => setDescription(e.target.value)} value={description}></textarea>
                             {/* aqui em user id tem que ter o id do video */}
-                            <input type='submit' placeholder='Enviar'></input>
-
-
+                            <input type='submit'  placeholder='Enviar' ></input>
                         </div>
                     </form>
-
                 </section>
             </main>
 

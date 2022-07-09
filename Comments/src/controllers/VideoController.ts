@@ -15,13 +15,14 @@ type Video = {
 class VideoController {
     //posta um novo video
     async newVideo(req, res: Response) {
-        const {userID, videoTitle, videoUrl, likeNumber, subject,} = req.body;
+        const {userID, videoTitle, videoUrl, likeNumber, subject,description} = req.body;
         const videos = await VideosModel.create({
             userID,
             videoTitle,
             videoUrl:req.file ? req.file.filename : undefined, 
             likeNumber, 
-            subject,});
+            subject,
+            description});
             return res.status(201).json({          
                 error: false,
                 message: 'sucess',
