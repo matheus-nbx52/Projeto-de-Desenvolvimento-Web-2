@@ -194,6 +194,12 @@ a .logo i{
     display: flex;
     color: white;
     gap: 20px;
+    
+}
+.videos .video.selected{
+    background-color: #5c6a9146;
+    padding: 10px;
+    border-radius: 20px;
 }
 .videos .video video{
     border-radius: 10px;

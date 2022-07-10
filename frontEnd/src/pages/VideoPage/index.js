@@ -239,7 +239,7 @@ export default function VideoPage() {
               const user = userById(video.userID);
               return (
                 <div
-                  className="video"
+                  className={mainVideo.id == video.id ? 'video selected' : 'video'}
                   onClick={(e) => {
                     renderVideo(video.id);
                   }}
