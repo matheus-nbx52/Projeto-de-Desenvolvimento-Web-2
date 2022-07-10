@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import userController from '../controller/userController';
+import AutorizationMiddleawe from '../middlewares/AutorizationMiddleawe';
 import uploadUser from '../middlewares/upload';
 
 const userRoutes = Router();
@@ -11,8 +12,8 @@ userRoutes.get('/user/:userId', userController.getUserById);
 
 userRoutes.post('/new', uploadUser.single('userImg'), userController.newUser);
 
-userRoutes.post('/update/:userId', uploadUser.single('userImg'), userController.updateUser); // metodo deve ser put
+userRoutes.post('/update/:userId', AutorizationMiddleawe, uploadUser.single('userImg'), userController.updateUser); // metodo deve ser put
 
-userRoutes.delete('/remove/:userId', userController.removeUser);
+userRoutes.delete('/remove/:userId', AutorizationMiddleawe, userController.removeUser);
 
 export = userRoutes;
