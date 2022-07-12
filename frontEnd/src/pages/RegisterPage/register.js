@@ -69,8 +69,11 @@ export default function CadastroPage() {
                     }
                 })
                 setIsloading(false)
-                toast.success('Sucesso em atualizar usuario')
-                console.log(response)
+                // send email aqui 
+                // mandar um email com o nome eo sobrenome
+                
+                toast.success('Cadastro realizado com sucesso')
+                
                 navigate('/loginpage')
 
             } catch (err) {

@@ -59,7 +59,7 @@ export default function VideoPage() {
       console.log(userById);
       return userById;
     } catch (e) {
-      return "";
+      return [{image:'none'}];
     }
   }
 
@@ -173,9 +173,10 @@ export default function VideoPage() {
                 <img
                   alt="usuario"
                   src={
-                    userById(userLoggedId)
+                    
+                    userById(userLoggedId)[0]
                       ? `http://localhost:3030/upload/${
-                          userById(userLoggedId)[0].image
+                          userById(userLoggedId)[0].image || 'none'
                         }`
                       : NoUser
                   }

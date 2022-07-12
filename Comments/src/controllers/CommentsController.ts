@@ -37,6 +37,7 @@ class CommentsController {
         comments: myCache.get("comments"),
       });
     }
+    
 
     const comments = await CommentsModel.findAll();
     myCache.set("comments", { comments });
