@@ -15,6 +15,7 @@ export default function UserPage() {
   const [UserName, setName] = useState("");
   const [UserPassword, setPassword] = useState("");
   const userId = useSelector((state) => state.auth.userId);
+  const userToken = useSelector((state) => state.auth.token);
   const [UserEmail, setEmail] = useState("");
   const [UserSobrenome, setSobrenome] = useState("");
   const [isLoading, setIsloading] = useState(false);
@@ -95,12 +96,14 @@ export default function UserPage() {
       formData.append("userImg", UserPhoto);
       try {
         setIsloading(true);
+        console.log(userToken)
         const response = await axios.post(
           `http://localhost:3030/update/${userId}`,
           formData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
+              'autorization':`Bearer ${userToken}`
             },
           }
         );

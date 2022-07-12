@@ -19,6 +19,7 @@ export default function VideoPage() {
   const [users, setUsers] = useState();
   const [newComment, setNewComment] = useState();
   const userLoggedId = useSelector((state) => state.auth.userId);
+  const userToken = useSelector((state)=>state.auth.token)
   const [videoComments, setVideoComments] = useState([]);
   const [MainVideoAuth, setMainVideoAuth] = useState("");
 
@@ -68,7 +69,8 @@ export default function VideoPage() {
     });
   }
   function getAllUsers() {
-    axios.get(`http://localhost:3030/user/`).then((response) => {
+    axios.get(`http://localhost:3030/user/`,
+    ).then((response) => {
       setUsers(response.data.users);
     });
   }
@@ -237,7 +239,7 @@ export default function VideoPage() {
               const user = userById(video.userID);
               return (
                 <div
-                  className="video"
+                  className={mainVideo.id == video.id ? 'video selected' : 'video'}
                   onClick={(e) => {
                     renderVideo(video.id);
                   }}
