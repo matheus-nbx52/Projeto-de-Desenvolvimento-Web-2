@@ -6,17 +6,25 @@ import myCache from "../middlewares/cache";
 class CommentsController {
   //posta um comentario
   async newComment(req: Request, res: Response) {
-    const { userID, videos_idVideos, comentario } = req.body;
-    const comments = await CommentsModel.create({
-      userID,
-      videos_idVideos,
-      comentario,
-    });
-    return res.status(201).json({
-      error: false,
-      message: "sucess",
-      comments,
-    });
+    try {
+      const { userID, videos_idVideos, comentario } = req.body;
+      const comments = await CommentsModel.create({
+        userID,
+        videos_idVideos,
+        comentario,
+      });
+      return res.status(201).json({
+        error: false,
+        message: "sucess",
+        comments,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({
+        error: true,
+        message: "Database error",
+      });
+    }
   }
   async findOneComment(req: Request, res: Response) {
     const { videoid } = req.params;
@@ -24,12 +32,15 @@ class CommentsController {
       where: {
         videos_idVideos: videoid,
       },
+      order:[
+        ['createdAt','DESC']
+      ]
     });
     return res.json(comments);
   }
   //consultar todos os comentarios
   async findAllComment(req: Request, res: Response) {
-    // implementação do cache 
+    // implementação do cache
     if (myCache.has("comments")) {
       return res.status(200).json({
         error: false,
@@ -37,7 +48,6 @@ class CommentsController {
         comments: myCache.get("comments"),
       });
     }
-    
 
     const comments = await CommentsModel.findAll();
     myCache.set("comments", { comments });

@@ -135,7 +135,7 @@ export default function UserPage() {
             <a href="/addvideo">
               <i class="fas fa-photo-video"></i>
             </a>
-            <i class="fas fa-gamepad"></i>
+            <a href="/uservideos"><i class="fas fa-gamepad"></i></a>
             <i class="fas fa-star"></i>
           </div>
           <div className="icons">

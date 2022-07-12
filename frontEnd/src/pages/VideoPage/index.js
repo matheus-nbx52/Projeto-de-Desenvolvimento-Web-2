@@ -104,7 +104,7 @@ export default function VideoPage() {
       .then((response) => {
         setIsLoading(false);
         setNewComment("");
-        setVideoComments([...videoComments, response.data.comments]);
+        setVideoComments([response.data.comments, ...videoComments]);
       })
       .catch((e) => {
         setIsLoading(false);
