@@ -24,10 +24,10 @@ export default function VideoPage() {
   const [MainVideoAuth, setMainVideoAuth] = useState("");
 
   useEffect(() => {
+    getAllUsers();
     getVideos();
     getMainVideo();
     getComments();
-    getAllUsers();
   }, [videoid]);
 
   async function getMainVideo() {
@@ -68,11 +68,14 @@ export default function VideoPage() {
       setMainVideoAuth(response.data.user);
     });
   }
+  
   function getAllUsers() {
     axios.get(`http://localhost:3030/user/`,
     ).then((response) => {
       setUsers(response.data.users);
     });
+
+    
   }
 
   function handleClickDeleteComment(commentId, index) {

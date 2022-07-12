@@ -8,6 +8,7 @@ import { CommentsModel } from './models/CommentsModel'
 import CommentRouter from './routes/comments'
 import delay from 'express-delay';
 import cors from 'cors'
+import myCache from '../src/middlewares/cache'
 
 // rota de usuarios
 dotenv.config();
@@ -31,9 +32,11 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
+
 app.use(CommentRouter)
-app.use(delay(1000))
+
 app.use(videosRouter)
+
 
 
 app.listen(8081, async ()=>{

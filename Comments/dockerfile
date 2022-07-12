@@ -1,4 +1,3 @@
-# using a python small basic image
 FROM node:alpine
 
 EXPOSE 8081
