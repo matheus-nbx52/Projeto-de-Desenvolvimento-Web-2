@@ -75,8 +75,8 @@ class VideoController {
   }
 
   async findVideoByName(req: Request, res: Response) {
-    const videoName: string = req.query.search_query;
-    const videos: Video[] = await VideosModel.findAll();
+    const videoName:any = req.query.search_query;
+    const videos = await VideosModel.findAll();
     // se nao tivaer a query ele retornara todos os videos
     if (!videoName) {
       return res.status(200).json({
@@ -87,7 +87,7 @@ class VideoController {
     }
 
     if (!videos) return res.send("Error");
-    const videosFiltrados = videos.filter((video) =>
+    const videosFiltrados = videos.filter((video:any) =>
       video.videoTitle.toLowerCase().includes(videoName.toLowerCase())
     );
     return res.status(200).json({
