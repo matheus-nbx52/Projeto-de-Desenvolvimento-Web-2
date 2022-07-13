@@ -13,6 +13,8 @@ import Loading from '../../componentes/Loading';
 import { useSelector } from 'react-redux';
 import noUser from '../../static/imgs/no-User.png'
 
+
+
 export default function Corpo() {
     const [UserImg, setUserImg] = useState('')
     const [AllVideos, setAllVideos] = useState([])
@@ -29,8 +31,8 @@ export default function Corpo() {
 
     }, [])
     function GetUserPhoto() {
-        axios.get(`http://localhost:3030/user/${userId}`).then((userApi) =>
-            setUserImgApi(`http://localhost:3030/upload/${userApi.data.user.image}`)
+        axios.get(`${process.env.REACT_APP_USER_URL}/user/${userId}`).then((userApi) =>
+            setUserImgApi(`${process.env.REACT_APP_USER_URL}/upload/${userApi.data.user.image}`)
 
 
         ).catch((e) => console.log(e))
@@ -38,7 +40,7 @@ export default function Corpo() {
     }
 
     async function GetAllVideos() {
-        await axios.get('http://localhost:8081/videos').then((data) => {
+        await axios.get(`${process.env.REACT_APP_COMMENTS_URL}/videos`).then((data) => {
             let user = data.data.videos
             setAllVideos(user)
             setLoading(false)
@@ -47,22 +49,14 @@ export default function Corpo() {
     }
 
     function handleChange(e) {
-        axios.get(`http://localhost:8081/videos/search?search_query=${e.target.value}`).then((data) => {
+        axios.get(`${process.env.REACT_APP_COMMENTS_URL}/videos/search?search_query=${e.target.value}`).then((data) => {
             let user = data.data.videosFiltrados
             setAllVideos(user)
         })
 
     }
 
-
-
-
-
-
-
-    // console.log(videos)
-
-
+                       
     return (
         <>
             <Loading isLoading={isLoading} />

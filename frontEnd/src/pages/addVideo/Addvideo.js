@@ -29,8 +29,8 @@ export default function AddVideo() {
     }, [])
 
     function GetUserPhoto(){
-        axios.get(`http://localhost:3030/user/${userId}`).then((userApi) => 
-        setUserImgApi(`http://localhost:3030/upload/${userApi.data.user.image}`)
+        axios.get(`${process.env.REACT_APP_USER_URL}/user/${userId}`).then((userApi) => 
+        setUserImgApi(`${process.env.REACT_APP_USER_URL}/upload/${userApi.data.user.image}`)
 
         
         ).catch((e)=> console.log(e))
@@ -70,7 +70,7 @@ export default function AddVideo() {
             formData.append("description",description)
             try {
                 setIsloading(true)
-                const response = await axios.post(`http://localhost:8081/videos`, formData, {
+                const response = await axios.post(`${process.env.REACT_APP_COMMENTS_URL}/videos`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

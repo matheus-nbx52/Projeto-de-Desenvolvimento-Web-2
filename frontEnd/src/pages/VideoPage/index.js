@@ -1,5 +1,4 @@
 import "./styled.css";
-import "@vime/core/themes/default.css";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -31,14 +30,14 @@ export default function VideoPage() {
   }, [videoid]);
 
   async function getMainVideo() {
-    axios.get(`http://localhost:8081/videos/${videoid}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_COMMENTS_URL}/videos/${videoid}`).then((response) => {
       setMainVideo(response.data.videos);
       getUsersById(response.data.videos.userID);
     });
   }
   async function getVideos() {
     setIsLoading(true);
-    await axios.get("http://localhost:8081/videos").then((response) => {
+    await axios.get(`${process.env.REACT_APP_COMMENTS_URL}/videos`).then((response) => {
       setVideos(response.data.videos);
       setIsLoading(false);
     });
@@ -49,7 +48,7 @@ export default function VideoPage() {
   }
 
   function getComments() {
-    axios.get(`http://localhost:8081/comment/${videoid}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_COMMENTS_URL}/comment/${videoid}`).then((response) => {
       setVideoComments(response.data);
     });
   }
@@ -64,13 +63,13 @@ export default function VideoPage() {
   }
 
   function getUsersById(userID) {
-    axios.get(`http://localhost:3030/user/${userID}`).then((response) => {
+    axios.get(`${process.env.REACT_APP_USER_URL}/user/${userID}`).then((response) => {
       setMainVideoAuth(response.data.user);
     });
   }
   
   function getAllUsers() {
-    axios.get(`http://localhost:3030/user/`,
+    axios.get(`${process.env.REACT_APP_USER_URL}/user/`,
     ).then((response) => {
       setUsers(response.data.users);
     });
@@ -81,7 +80,7 @@ export default function VideoPage() {
   function handleClickDeleteComment(commentId, index) {
     setIsLoading(true);
     axios
-      .delete(`http://localhost:8081/Comment/${commentId}`)
+      .delete(`${process.env.REACT_APP_COMMENTS_URL}/Comment/${commentId}`)
       .then((response) => {
         toast.success("comentario deletado com sucesso");
         setIsLoading(false);
@@ -96,7 +95,7 @@ export default function VideoPage() {
   function handleClickNewComment() {
     setIsLoading(true);
     axios
-      .post(`http://localhost:8081/Comment`, {
+      .post(`${process.env.REACT_APP_COMMENTS_URL}/Comment`, {
         userID: userLoggedId,
         videos_idVideos: videoid,
         comentario: newComment,
@@ -139,7 +138,7 @@ export default function VideoPage() {
           <div className="videoContainer">
             <div className="videoPlayer">
               <video
-                src={`http://localhost:8081/upload/${mainVideo.videoUrl}`}
+                src={`${process.env.REACT_APP_COMMENTS_URL}/upload/${mainVideo.videoUrl}`}
                 controls
               />
             </div>
@@ -156,7 +155,7 @@ export default function VideoPage() {
                 alt="usuario"
                 src={
                   MainVideoAuth.image
-                    ? `http://localhost:3030/upload/${MainVideoAuth.image}`
+                    ? `${process.env.REACT_APP_USER_URL}/upload/${MainVideoAuth.image}`
                     : NoUser
                 }
               ></img>
@@ -175,7 +174,7 @@ export default function VideoPage() {
                   src={
                     
                     userById(userLoggedId)[0]
-                      ? `http://localhost:3030/upload/${
+                      ? `${process.env.REACT_APP_USER_URL}/upload/${
                           userById(userLoggedId)[0].image || 'none'
                         }`
                       : NoUser
@@ -203,7 +202,7 @@ export default function VideoPage() {
                   return (
                     <div className="comment" key={index}>
                       <img
-                        src={`http://localhost:3030/upload/${user[0].image}`}
+                        src={`${process.env.REACT_APP_USER_URL}/upload/${user[0].image}`}
                         alt='user'
                       ></img>
 
@@ -249,14 +248,14 @@ export default function VideoPage() {
                   }}
                 >
                   <video
-                    src={`http://localhost:8081/upload/${video.videoUrl}`}
+                    src={`${process.env.REACT_APP_COMMENTS_URL}/upload/${video.videoUrl}`}
                   />
                   <div className="videoDetails">
                     <div className="videoTitle">{video.videoTitle}</div>
                     <div className="videoUserDetais">
                       <div className="videoUserImg">
                         <img
-                          src={`http://localhost:3030/upload/${user[0].image}`}
+                          src={`${process.env.REACT_APP_COMMENTS_URL}/upload/${user[0].image}`}
                           alt='userImage'
                         ></img>
                       </div>

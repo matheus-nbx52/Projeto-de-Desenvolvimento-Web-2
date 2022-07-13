@@ -1,6 +1,3 @@
-import { useState } from "react"
-import axios from "axios"
-import Img from '../../static/imgs/imagem-teste.jpeg'
 import { useNavigate } from "react-router-dom"
 
 
@@ -18,7 +15,7 @@ export default function Card({ videoname, assunto, urlvideo, data, videoId,ico }
     return (
         <div class="video_card"  onClick={ (e)=>{renderVideo(e)}}>
             <div class="card_image">
-                <video src={`http://localhost:8081/upload/${urlvideo}`} id={videoId} ></video>
+                <video src={`${process.env.REACT_APP_COMMENTS_URL}/upload/${urlvideo}`} id={videoId} ></video>
             </div>
 
             <div class="card_ico">

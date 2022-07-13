@@ -33,7 +33,7 @@ export default function UserPage() {
 
   function getVideo(){
     setIsloading(true)
-    axios.get('http://localhost:8081/videos').then((response)=>{
+    axios.get(`${process.env.REACT_APP_COMMENTS_URL}/videos`).then((response)=>{
       const Videos = response.data.videos.filter(video => video.userID == userId)
       setFilterVideos(Videos)
       setIsloading(false)
@@ -45,7 +45,7 @@ export default function UserPage() {
 
   function deleteVideo(videoID){
     setIsloading(true)
-    axios.delete(`http://localhost:8081/videos/${videoID}`).then((response)=>{
+    axios.delete(`${process.env.REACT_APP_COMMENTS_URL}/videos/${videoID}`).then((response)=>{
     setIsloading(false)
     toast.success('video deletado com sucesso')
     getVideo()

@@ -63,7 +63,7 @@ export default function CadastroPage() {
             formData.append('userImg',userImg)
             try {
                 setIsloading(true)
-                const response = await axios.post(`http://localhost:3030/new`, formData, {
+                const response = await axios.post(`${process.env.REACT_APP_USER_URL}/new`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
