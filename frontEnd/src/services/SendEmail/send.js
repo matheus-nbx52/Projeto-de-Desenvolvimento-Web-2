@@ -6,14 +6,14 @@ let transporter = nodemailer.createTransport({
     port: 587,
     secure: true,
     auth: {
-        user: "",
-        pass: ""
+        user: "reactubenicevine@gmail.com",
+        pass: "a123456#"
     }
 });
 
 transporter.sendMail({
-    from: " <>",
-    to: "",
+    from: "<reactubenicevine@gmail.com>",
+    to: "esa12@discente.ifpe.edu.br",
     subject: "teste",
     text: "este teste foi um sucesso!",
     html: "oi"

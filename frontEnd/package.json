@@ -10,6 +10,7 @@
     "compass-mixins": "^0.12.11",
     "dotenv": "^16.0.1",
     "loadash": "^1.0.0",
+    "nodemailer": "^6.7.7",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-helmet": "^6.1.0",
