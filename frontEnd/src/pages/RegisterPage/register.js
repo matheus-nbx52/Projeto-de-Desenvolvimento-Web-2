@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import Loading from '../../componentes/Loading';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-
+import nodemailer from 'nodemailer';
 
 export default function CadastroPage() {
     const [email,setEmail] = useState('')
@@ -71,6 +71,30 @@ export default function CadastroPage() {
                 setIsloading(false)
                 // send email aqui 
                 // mandar um email com o nome eo sobrenome
+                let transporter = nodemailer.createTransport({
+                    service: "gmail",
+                    host: "smtp.google.com",
+                    port: 587,
+                    secure: true,
+                    auth: {
+                        user: "",
+                        pass: ""
+                    }
+                });
+                
+                transporter.sendMail({
+                    from: " <>",
+                    to: email,
+                    subject: "teste",
+                    text: "",
+                    html: "você foi cadastrado com sucesso! bem-vindo ao nosso!"
+                }).then(message => {
+                    console.log(message);
+                
+                }).catch(err => {
+                    console.log(err);
+                });
+
                 
                 toast.success('Cadastro realizado com sucesso')
                 
