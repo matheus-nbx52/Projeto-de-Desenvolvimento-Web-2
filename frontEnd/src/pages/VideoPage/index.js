@@ -255,7 +255,7 @@ export default function VideoPage() {
                     <div className="videoUserDetais">
                       <div className="videoUserImg">
                         <img
-                          src={`${process.env.REACT_APP_COMMENTS_URL}/upload/${user[0].image}`}
+                          src={`${process.env.REACT_APP_USER_URL}/upload/${user[0].image}`}
                           alt='userImage'
                         ></img>
                       </div>
