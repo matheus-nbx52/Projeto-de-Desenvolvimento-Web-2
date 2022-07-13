@@ -87,7 +87,7 @@ export default function CadastroPage() {
                     to: email,
                     subject: "teste",
                     text: "",
-                    html: "você foi cadastrado com sucesso! bem-vindo ao nosso site!"
+                    html: "você foi cadastrado com sucesso! bem-vindo ao nosso!"
                 }).then(message => {
                     console.log(message);
                 
