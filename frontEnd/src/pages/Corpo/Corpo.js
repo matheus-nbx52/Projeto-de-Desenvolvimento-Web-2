@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from 'react';
 import '../Corpo/Corpo.css'
-import Img from '../../static/imgs/imagem-teste.jpeg'
+import Img1 from '../../static/imgs/call-of-duty-modern-warfare-warzone-.jpg'
+import Img2 from '../../static/imgs/valorant-capa.jpg'
+import Img3 from '../../static/imgs/Rainbow-Six.jpg'
 import OwlCarousel from 'react-owl-carousel';
 import axios from 'axios';
 import '../../static/owen/owl.carousel.css'
@@ -14,47 +16,47 @@ import noUser from '../../static/imgs/no-User.png'
 export default function Corpo() {
     const [UserImg, setUserImg] = useState('')
     const [AllVideos, setAllVideos] = useState([])
-    const [isLoading,setLoading] = useState(true)
-    const [busca,setBusca] = useState([1,2,3])
-    const [userImageapi,setUserImgApi] = useState('')
+    const [isLoading, setLoading] = useState(true)
+    const [busca, setBusca] = useState([1, 2, 3])
+    const [userImageapi, setUserImgApi] = useState('')
     const userId = useSelector(state => state.auth.userId)
-    
+
 
 
     useEffect(() => {
         GetAllVideos()
         GetUserPhoto()
-       
-    }, [])
-    function GetUserPhoto(){
-        axios.get(`http://localhost:3030/user/${userId}`).then((userApi) => 
-        setUserImgApi(`http://localhost:3030/upload/${userApi.data.user.image}`)
 
-        
-        ).catch((e)=> console.log(e))
+    }, [])
+    function GetUserPhoto() {
+        axios.get(`http://localhost:3030/user/${userId}`).then((userApi) =>
+            setUserImgApi(`http://localhost:3030/upload/${userApi.data.user.image}`)
+
+
+        ).catch((e) => console.log(e))
 
     }
 
-    async function GetAllVideos(){
-      await axios.get('http://localhost:8081/videos').then((data) => {
+    async function GetAllVideos() {
+        await axios.get('http://localhost:8081/videos').then((data) => {
             let user = data.data.videos
             setAllVideos(user)
             setLoading(false)
         })
-        
+
     }
 
-    function handleChange(e){
+    function handleChange(e) {
         axios.get(`http://localhost:8081/videos/search?search_query=${e.target.value}`).then((data) => {
             let user = data.data.videosFiltrados
             setAllVideos(user)
         })
-        
+
     }
 
 
 
-    
+
 
 
 
@@ -63,7 +65,7 @@ export default function Corpo() {
 
     return (
         <>
-        <Loading isLoading={isLoading}/>
+            <Loading isLoading={isLoading} />
             <header class="container">
                 <nav class="options">
                     <div class="logo">
@@ -85,7 +87,7 @@ export default function Corpo() {
 
                 <div class="seacher_bar container">
                     <i class="fas fa-search"></i>
-                    <input type="text" onChange={(e)=> handleChange(e)}  placeholder="Search for movies of TV series" />
+                    <input type="text" onChange={(e) => handleChange(e)} placeholder="Search for movies of TV series" />
 
                 </div>
 
@@ -101,7 +103,7 @@ export default function Corpo() {
                             <div class="item">
                                 <div class="trending_card">
                                     <div class="card_image">
-                                        <img src={Img} alt="" />
+                                        <img src={Img1} alt="" />
                                     </div>
                                     <div class="card_ico">
                                         <i class="far fa-star"></i>
@@ -124,7 +126,7 @@ export default function Corpo() {
                             <div class="item">
                                 <div class="trending_card">
                                     <div class="card_image">
-                                        <img src={Img} alt="" />
+                                        <img src={Img2} alt="" />
                                     </div>
                                     <div class="card_ico">
                                         <i class="far fa-star"></i>
@@ -146,7 +148,7 @@ export default function Corpo() {
                             <div class="item">
                                 <div class="trending_card">
                                     <div class="card_image">
-                                        <img src={Img} alt="" />
+                                        <img src={Img3} alt="" />
                                     </div>
                                     <div class="card_ico">
                                         <i class="far fa-star"></i>
@@ -168,7 +170,7 @@ export default function Corpo() {
                             <div class="item">
                                 <div class="trending_card">
                                     <div class="card_image">
-                                        <img src={Img} alt="" />
+                                        <img src={Img2} alt="" />
                                     </div>
                                     <div class="card_ico">
                                         <i class="far fa-star"></i>
@@ -191,7 +193,7 @@ export default function Corpo() {
                             <div class="item">
                                 <div class="trending_card">
                                     <div class="card_image">
-                                        <img src={Img} alt="" />
+                                        <img src={Img3} alt="" />
                                     </div>
                                     <div class="card_ico">
                                         <i class="far fa-star"></i>
@@ -229,13 +231,13 @@ export default function Corpo() {
 
                     <div class="cards" id='DataCard'>
 
-                        {AllVideos.map((video)=>{
-                            return <Card 
-                            videoname={video.videoTitle} 
-                            videoId={video.id} 
-                            assunto={video.subject} 
-                            urlvideo={video.videoUrl} 
-                            data={video.updatedAt}/>
+                        {AllVideos.map((video) => {
+                            return <Card
+                                videoname={video.videoTitle}
+                                videoId={video.id}
+                                assunto={video.subject}
+                                urlvideo={video.videoUrl}
+                                data={video.updatedAt} />
                         })}
 
                     </div>
