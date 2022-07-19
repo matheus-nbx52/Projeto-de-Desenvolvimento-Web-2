@@ -42,7 +42,7 @@ export default function UserPage() {
       setIsloading(false)
     })
   }
-
+  
   function deleteVideo(videoID){
     setIsloading(true)
     axios.delete(`${process.env.REACT_APP_COMMENTS_URL}/videos/${videoID}`).then((response)=>{

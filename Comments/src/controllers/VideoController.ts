@@ -65,12 +65,18 @@ class VideoController {
   async updateVideo(req: Request, res: Response) {
     const { videoId } = req.params;
     await VideosModel.update(req.body, { where: { id: videoId } });
+    const videos = await VideosModel.findAll();
+    if (!videos) return res.send("error");
+    myCache.set("videos", { videos });
     return res.status(204).send();
   }
   //deleta um video
   async deleteVideo(req: Request, res: Response) {
     const { videoId } = req.params;
     await VideosModel.destroy({ where: { id: videoId } });
+    const videos = await VideosModel.findAll();
+    if (!videos) return res.send("error");
+    myCache.set("videos", { videos });
     return res.status(204).send();
   }
 
