@@ -13,21 +13,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - name: Comments
-        run:
+      - name: run project
+        run: |
           cd Comments
           npm install
           npm run dev
-      - name: frontEnd
-        run:
-        cd frontEnd
-        npm install
-        npm run start
-      - name: User
-        run:
-        cd User
-        npm install
-        npm run dev
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
