@@ -78,7 +78,7 @@ a .logo i{
 .userDatails{
     width: 950px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 40px;
     gap: 20px;
