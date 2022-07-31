@@ -14,17 +14,17 @@ jobs:
         with:
           node-version: '14.x'
       - name: Comments
-        run: | 
+        run:
           cd Comments
           npm install
           npm run dev
       - name: frontEnd
-        run: |
+        run:
         cd frontEnd
         npm install
         npm run start
       - name: User
-        run: |
+        run:
         cd User
         npm install
         npm run dev
